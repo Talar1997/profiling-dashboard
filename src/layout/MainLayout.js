@@ -6,9 +6,8 @@ import "../assets/Layout.scss";
 import SignedFooter from "./SignedFooter";
 import Sidebar from "./Sidebar";
 import CustomHeader from "./CustomHeader";
-import ContentContainer from "./ContentContainer";
 
-export default function MainLayout() {
+export default function MainLayout(props) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -16,7 +15,7 @@ export default function MainLayout() {
       <Sidebar collapsed={collapsed} />
       <Layout className="site-layout">
         <CustomHeader collapsed={collapsed} setCollapsed={setCollapsed} />
-        <ContentContainer />
+        {props.children}
         <SignedFooter />
       </Layout>
     </Layout>
