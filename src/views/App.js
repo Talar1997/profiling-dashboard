@@ -5,9 +5,14 @@ import "../assets/index.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import NotFound from "./NotFound";
+import { routes } from "../routes/routes";
 
-//TODO: make component with static routing and add router automatically
 export default function App() {
+  const routesComponents = routes.map((route) => (
+    <Route key={route.to} path={route.to}>
+      {route.view}
+    </Route>
+  ));
   return (
     <BrowserRouter>
       <Switch>
@@ -15,13 +20,7 @@ export default function App() {
           <Dashboard data="EVERYTHING" />
         </Route>
 
-        <Route path="/dashboard">
-          <Dashboard data="DASHBOARD" />
-        </Route>
-
-        <Route path="/users/connected">
-          <Dashboard data="USERS CONNECTED" />
-        </Route>
+        {routesComponents}
 
         <Route path="*">
           <NotFound />
