@@ -7,11 +7,13 @@ const { Sider } = Layout;
 export default function Sidebar(props) {
   let location = useLocation();
 
-  const menuItems = routes.map((route) => (
-    <Menu.Item key={route.to} icon={route.icon}>
-      <NavLink to={route.to}>{route.description}</NavLink>
-    </Menu.Item>
-  ));
+  const menuItems = routes
+    .filter((route) => route.showInSidebar)
+    .map((route) => (
+      <Menu.Item key={route.to} icon={route.icon}>
+        <NavLink to={route.to}>{route.description}</NavLink>
+      </Menu.Item>
+    ));
 
   return (
     <Sider trigger={null} collapsible collapsed={props.collapsed}>

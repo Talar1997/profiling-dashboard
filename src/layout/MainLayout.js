@@ -8,6 +8,7 @@ import Sidebar from "./Sidebar";
 import CustomHeader from "./CustomHeader";
 
 export default function MainLayout(props) {
+  //TODO: save collapsed in localStorage
   const [collapsed, setCollapsed] = useState(false);
 
   return (
