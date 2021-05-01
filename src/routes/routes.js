@@ -47,7 +47,7 @@ export const routes = [
     description: "All users",
     icon: <UsergroupAddOutlined />,
     view: <Dashboard />,
-    exact: true,
+    exact: false,
   },
   {
     showInSidebar: true,
