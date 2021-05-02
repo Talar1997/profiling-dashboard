@@ -2,7 +2,7 @@ import { Layout } from "antd";
 
 import React, { useState } from "react";
 
-import "../assets/Layout.scss";
+import "../../assets/Layout.scss";
 import SignedFooter from "./SignedFooter";
 import Sidebar from "./Sidebar";
 import CustomHeader from "./CustomHeader";
