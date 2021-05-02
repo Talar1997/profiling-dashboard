@@ -19,10 +19,16 @@
     "redux-thunk": "^2.3.0",
     "web-vitals": "^1.1.1"
   },
+  "devDependencies": {
+    "fetch-mock": "^9.11.0",
+    "jest": "^26.6.0",
+    "prettier": "^2.2.1",
+    "redux-mock-store": "^1.5.4"
+  },
   "scripts": {
     "start": "set PORT=8080 && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,8 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "prettier": "^2.2.1"
   }
 }
