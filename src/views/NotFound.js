@@ -1,6 +1,6 @@
 import { Button, Result } from "antd";
 import { Link } from "react-router-dom";
-import MainLayout from "../layout/MainLayout";
+import MainLayout from "../components/layout/MainLayout";
 import { Layout } from "antd";
 
 const { Content } = Layout;
