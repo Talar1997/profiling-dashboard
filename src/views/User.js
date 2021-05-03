@@ -1,8 +1,8 @@
 import React from "react";
-import MainLayout from "../components/layout/MainLayout";
 import ContentContainer from "../components/layout/ContentContainer";
+import MainLayout from "../components/layout/MainLayout";
 
-function Users(props) {
+function User(props) {
   return (
     <MainLayout>
       <ContentContainer>
@@ -12,4 +12,4 @@ function Users(props) {
   );
 }
 
-export default Users;
+export default User;

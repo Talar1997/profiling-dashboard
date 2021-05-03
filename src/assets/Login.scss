@@ -1,0 +1,38 @@
+@import '~antd/dist/antd.css';
+
+.container{
+  background-color: #f0f2f5;
+}
+
+.loginContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginFormWrapper{
+  width: 400px;
+  height: auto;
+  padding: 40px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #e3e3e3;
+
+  .login-form-button {
+    width: 100%;
+    margin: 10px 0 10px 0;
+  }
+
+  .loginIcon{
+    width: 100%;
+    text-align: center;
+    font-size: 8rem;
+    margin-bottom: 25px;
+  }
+}
+
+.ant-row .ant-form-item:last-child{
+  margin-bottom: 0 !important;
+}
+

@@ -4,7 +4,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 const { Header } = Layout;
 const { Search } = Input;
 
-export default function CustomHeader(props) {
+export default function NavigationBar(props) {
   const toggle = () => props.setCollapsed(!props.collapsed);
 
   const collapsedComponent = props.collapsed ? (

@@ -1,68 +1,81 @@
 import {
   CloudServerOutlined,
+  DashboardOutlined,
   LogoutOutlined,
   SettingOutlined,
   UsergroupAddOutlined,
   UserSwitchOutlined,
-  DashboardOutlined,
 } from "@ant-design/icons";
 import Dashboard from "../views/Dashboard";
+import Settings from "../views/Settings";
+import User from "../views/User";
+import Users from "../views/Users";
+import ConnectedUsers from "../views/ConnectedUsers";
+import ServerUtilization from "../views/ServerUtilization";
+import { Redirect } from "react-router-dom";
 
 export const routes = [
   {
-    showInSidebar: true,
     to: "/",
     description: "Dashboard",
     icon: <DashboardOutlined />,
-    view: <Dashboard data="Dashboard" />,
+    view: <Dashboard />,
     exact: true,
+    requireLogin: true,
+    showInSidebar: true,
   },
   {
-    showInSidebar: true,
     to: "/server-utilization",
     description: "Server utilization",
     icon: <CloudServerOutlined />,
-    view: <Dashboard data="Server utilization" />,
+    view: <ServerUtilization />,
     exact: true,
+    requireLogin: true,
+    showInSidebar: true,
   },
   {
-    showInSidebar: true,
     to: "/users/connected",
     description: "Connected users",
     icon: <UserSwitchOutlined />,
-    view: <Dashboard data="Connected users" />,
+    view: <ConnectedUsers />,
     exact: true,
+    requireLogin: true,
+    showInSidebar: true,
   },
   {
-    showInSidebar: true,
     to: "/users",
     description: "All users",
     icon: <UsergroupAddOutlined />,
-    view: <Dashboard data="All users" />,
+    view: <Users />,
     exact: true,
+    requireLogin: true,
+    showInSidebar: true,
   },
   {
-    showInSidebar: false,
     to: "/user/:data",
     description: "All users",
     icon: <UsergroupAddOutlined />,
-    view: <Dashboard />,
+    view: <User />,
     exact: false,
+    requireLogin: true,
+    showInSidebar: false,
   },
   {
-    showInSidebar: true,
     to: "/settings",
     description: "Settings",
     icon: <SettingOutlined />,
-    view: <Dashboard data="Settings" />,
+    view: <Settings />,
     exact: true,
+    requireLogin: true,
+    showInSidebar: true,
   },
   {
-    showInSidebar: true,
     to: "/logout",
     description: "Logout",
     icon: <LogoutOutlined />,
-    view: <Dashboard data="Logout" />,
+    view: <Redirect to={{ pathname: "/login" }} />,
     exact: true,
+    requireLogin: false,
+    showInSidebar: true,
   },
 ];

@@ -14,7 +14,15 @@
 #globalLayout .logo {
   height: 32px;
   margin: 16px;
-  background: rgba(255, 255, 255, 0.3);
+  color: #f0f2f5;
+  text-transform: capitalize;
+}
+#globalLayout .logo img {
+  width: 25px;
+  height: 25px;
+}
+#globalLayout .logo strong {
+  margin: 3px 0 0 3px;
 }
 
 .site-layout .site-layout-background {

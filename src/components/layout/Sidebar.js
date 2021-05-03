@@ -1,6 +1,7 @@
 import { Layout, Menu } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import { routes } from "../../routes/routes";
+import Logo from "../sidebar/Logo";
 
 const { Sider } = Layout;
 
@@ -17,7 +18,7 @@ export default function Sidebar(props) {
 
   return (
     <Sider trigger={null} collapsible collapsed={props.collapsed}>
-      <div className="logo" />
+      <Logo collapsed={props.collapsed} />
       <Menu theme="dark" mode="inline" selectedKeys={location.pathname}>
         {menuItems}
       </Menu>

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import "../../assets/Layout.scss";
 import SignedFooter from "./SignedFooter";
 import Sidebar from "./Sidebar";
-import CustomHeader from "./CustomHeader";
+import NavigationBar from "./NavigationBar";
 
 export default function MainLayout(props) {
   //TODO: save collapsed in localStorage
@@ -15,7 +15,7 @@ export default function MainLayout(props) {
     <Layout id="globalLayout">
       <Sidebar collapsed={collapsed} />
       <Layout className="site-layout">
-        <CustomHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+        <NavigationBar collapsed={collapsed} setCollapsed={setCollapsed} />
         {props.children}
         <SignedFooter />
       </Layout>
