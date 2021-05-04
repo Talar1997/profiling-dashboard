@@ -26,6 +26,9 @@ export default function App() {
       );
   });
 
+  //FIXME: Warning: You should not use <Route component> and <Route children> in the same route;
+  // <Route component> will be ignored
+  // https://stackoverflow.com/a/57408463
   return (
     <BrowserRouter>
       <Switch>
