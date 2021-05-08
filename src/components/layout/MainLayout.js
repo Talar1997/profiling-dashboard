@@ -1,24 +1,37 @@
-import { Layout } from "antd";
-
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import "../../assets/Layout.scss";
-import SignedFooter from "./SignedFooter";
-import Sidebar from "./Sidebar";
-import NavigationBar from "./NavigationBar";
+import HeaderContainer from "carbon-components-react/lib/components/UIShell/HeaderContainer"
+import {Header} from "carbon-components-react/lib/components/UIShell"
+import StoryContainer from "./StoryContainer"
+import NavigationBar from "./NavigationBar"
+import Sidebar from "./Sidebar"
+import RightPanel from "./RightPanel"
 
 export default function MainLayout(props) {
-  //TODO: save collapsed in localStorage
-  const [collapsed, setCollapsed] = useState(false);
+  const [isSwitcherExpanded, setIsSwitcherExpanded] = useState(false)
+  const toggleSwitcher = () => setIsSwitcherExpanded(!isSwitcherExpanded)
 
   return (
-    <Layout id="globalLayout">
-      <Sidebar collapsed={collapsed} />
-      <Layout className="site-layout">
-        <NavigationBar collapsed={collapsed} setCollapsed={setCollapsed} />
-        {props.children}
-        <SignedFooter />
-      </Layout>
-    </Layout>
+    <div className="container">
+      <HeaderContainer
+        render={({isSideNavExpanded, onClickSideNavExpand}) => (
+          <>
+            <Header aria-label="FuzzySet Dashboard">
+              <NavigationBar onClick={onClickSideNavExpand}
+                             isActive={isSideNavExpanded}
+                             toggleSwitcher={toggleSwitcher}/>
+              <Sidebar isSideNavExpanded={isSideNavExpanded}/>
+            </Header>
+
+            <StoryContainer>
+              {props.children}
+            </StoryContainer>
+
+            <RightPanel isSwitcherExpanded={isSwitcherExpanded}/>
+          </>
+        )}
+      />
+    </div>
   );
 }

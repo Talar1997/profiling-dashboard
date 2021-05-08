@@ -1,4 +1,3 @@
-@import '~antd/dist/antd.css';
 .container {
   background-color: #f0f2f5;
 }
@@ -13,9 +12,8 @@
 .loginFormWrapper {
   width: 400px;
   height: auto;
-  padding: 40px;
+  padding: 16px;
   background-color: white;
-  border-radius: 5px;
   border: 1px solid #e3e3e3;
 }
 .loginFormWrapper .login-form-button {

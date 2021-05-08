@@ -1,29 +1,40 @@
-import { Input, Layout, Space } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import {
+  HeaderGlobalAction,
+  HeaderGlobalBar,
+  HeaderMenuButton,
+  HeaderName,
+  SkipToContent
+} from "carbon-components-react/lib/components/UIShell"
+import Search20 from "@carbon/icons-react/lib/search/20"
+import AppSwitcher20 from "@carbon/icons-react/lib/app-switcher/20"
+import React from "react"
+import {Link} from "react-router-dom"
 
-const { Header } = Layout;
-const { Search } = Input;
 
 export default function NavigationBar(props) {
-  const toggle = () => props.setCollapsed(!props.collapsed);
-
-  const collapsedComponent = props.collapsed ? (
-    <MenuUnfoldOutlined className="trigger" onClick={toggle} />
-  ) : (
-    <MenuFoldOutlined className="trigger" onClick={toggle} />
-  );
-
   return (
-    <Header className="site-layout-background" style={{ padding: 0 }}>
-      <Space direction="horizontal">
-        {collapsedComponent}
-        <Search
-          placeholder="input search text"
-          allowClear
-          onSearch={(value) => console.log(value)}
-          style={{ width: 200, marginTop: 15, align: "right" }}
-        />
-      </Space>
-    </Header>
-  );
+    <>
+      <SkipToContent/>
+
+      <HeaderMenuButton
+        aria-label="Open menu"
+        onClick={props.onClick}
+        isActive={props.isActive}
+      />
+
+      <HeaderName element={Link} to="/" prefix="RM">
+        Profiling dashboard
+      </HeaderName>
+
+      <HeaderGlobalBar>
+        <HeaderGlobalAction aria-label="Search" onClick={() => {
+        }}>
+          <Search20/>
+        </HeaderGlobalAction>
+        <HeaderGlobalAction aria-label="App Switcher" onClick={props.toggleSwitcher}>
+          <AppSwitcher20/>
+        </HeaderGlobalAction>
+      </HeaderGlobalBar>
+    </>
+  )
 }
