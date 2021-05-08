@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 function View(props) {
   useEffect(() => {
-    document.title = "Fuzzy monitor - " + props.title || "Fuzzy monitor";
+    document.title = "Profiling Dashboard - " + props.title || "Profiling Dashboard";
   }, [props.title]);
 
   return <>{props.children}</>;

@@ -10,7 +10,7 @@ import Login from "./Login";
 
 export default function App() {
   useEffect(() => {
-    document.title = "Fuzzy monitor";
+    document.title = "Profiling Dashboard";
   }, []);
 
   const isLoggedIn = true;
@@ -30,7 +30,7 @@ export default function App() {
     <BrowserRouter>
       <Switch>
         <Route key="/login" path="/login" exact={true}>
-          <View title="Fuzzy monitor - Login">
+          <View title="Profiling Dashboard - Login">
             <Login />
           </View>
         </Route>

@@ -1,11 +1,17 @@
 import {HeaderPanel, Switcher, SwitcherDivider, SwitcherItem} from "carbon-components-react"
 import React from "react"
 import {externalApps} from "../../routes/external-apps"
+import "./../../assets/RightPanel.scss"
 
 export default function RightPanel(props) {
   const externalRoutes = externalApps.map(route => (
     <React.Fragment key={route.name}>
-      {route.dividerBefore ? <SwitcherDivider /> : null}
+      {route.dividerBefore
+        ? <>
+          <span className="group-header">{route.groupName}</span>
+          <SwitcherDivider />
+          </>
+        : null}
       <SwitcherItem aria-label={route.name}  href={route.href}>{route.name}</SwitcherItem>
     </React.Fragment>
   ))

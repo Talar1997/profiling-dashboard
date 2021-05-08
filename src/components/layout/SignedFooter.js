@@ -1,11 +1,8 @@
-import { Layout } from "antd";
-
-const { Footer } = Layout;
-
 export default function SignedFooter() {
+  //TODO: implement
   return (
-    <Footer style={{ textAlign: "center" }}>
-      Created by Adam Talarczyk with Ant UI library
-    </Footer>
+    <div style={{ textAlign: "center" }}>
+      Created by Adam Talarczyk with Carbon Design System
+    </div>
   );
 }

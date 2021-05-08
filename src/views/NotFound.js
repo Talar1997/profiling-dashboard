@@ -1,25 +1,17 @@
-import { Button, Result } from "antd";
-import { Link } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
-import { Layout } from "antd";
-
-const { Content } = Layout;
+import ContentContainer from "../components/layout/ContentContainer"
+import React from "react"
+import './../assets/404.scss'
 
 export default function NotFound() {
   return (
     <MainLayout>
-      <Content className="site-layout">
-        <Result
-          status="404"
-          title="404"
-          subTitle="Sorry, the page you visited does not exist."
-          extra={
-            <Link to="/">
-              <Button type="primary">Back Home</Button>
-            </Link>
-          }
-        />
-      </Content>
+      <ContentContainer>
+        <h2>Something gone wrong...</h2>
+        <h4>Sorry, we can’t find the page you are looking for.</h4>
+        <h4>Maybe some of these most visited links will help you?</h4>
+        <span className="four-oh-four">404</span>
+      </ContentContainer>
     </MainLayout>
   );
 }

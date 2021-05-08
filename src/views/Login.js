@@ -1,18 +1,22 @@
 import React from "react";
-import { Col, Row } from "antd";
 import "./../assets/Login.css";
 import LoginForm from "../components/login/LoginForm";
+import {ToolbarDivider} from "carbon-components-react"
 
 function Login(props) {
   return (
-    <Row className="container" justify="center">
-      <Col className="loginContainer" xs={20} sm={16} md={16} lg={12} xl={8}>
+    <div className="bx--row container">
+      <div className="bx--col"/>
+      <div className="bx--col loginContainer">
         <div className="loginFormWrapper">
           <h2>Log in</h2>
-          <LoginForm />
+          <p>Don't have an account? <a href="mailto:talar1997@outlook.com">Contact with administrator</a></p>
+          <ToolbarDivider/>
+          <LoginForm/>
         </div>
-      </Col>
-    </Row>
+      </div>
+      <div className="bx--col"/>
+    </div>
   );
 }
 
