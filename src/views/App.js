@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { render } from "react-dom";
-import "antd/dist/antd.css";
 import "../assets/index.css";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
