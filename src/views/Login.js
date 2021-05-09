@@ -1,9 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./../assets/Login.css";
 import LoginForm from "../components/login/LoginForm";
 import {ToolbarDivider} from "carbon-components-react"
+import {connect} from 'react-redux'
 
-function Login(props) {
+//TODO:
+// 0. map dispatch to proporties
+// 1. function to POST to /auth api
+// 2. function to set user when logged in
+// 3. during login, use reduct to set state on login-request
+const Login = (props) => {
+  useEffect(() => {
+    console.log('Component attached.')
+    console.log('Stored user: ', props.user)
+  })
+
   return (
     <div className="bx--row container">
       <div className="bx--col"/>
@@ -20,4 +31,8 @@ function Login(props) {
   );
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, {})(Login)

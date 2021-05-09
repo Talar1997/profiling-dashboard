@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { render } from "react-dom";
 import "../assets/index.css";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
@@ -40,4 +39,5 @@ export default function App() {
   );
 }
 
-render(<App />, document.getElementById("root"));
+// caused many errors. Render is placed in index.js
+// render(<App />, document.getElementById("root"));
