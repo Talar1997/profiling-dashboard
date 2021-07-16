@@ -1,8 +1,14 @@
 import React, {useEffect} from "react";
 import "./../assets/Login.css";
-import LoginForm from "../components/login/LoginForm";
+import {SignInForm} from "../components/login/SignInForm";
 import {ToolbarDivider} from "carbon-components-react"
 import {connect} from 'react-redux'
+import { reduxForm } from "redux-form";
+
+const SignInFormRedux = reduxForm({
+  form: 'signIn',
+})(SignInForm);
+
 
 //TODO:
 // 0. map dispatch to proporties
@@ -15,6 +21,10 @@ const Login = (props) => {
     console.log('Stored user: ', props.user)
   })
 
+  let handleSignIn = values => {
+    console.log(values)
+  }
+
   return (
     <div className="bx--row container">
       <div className="bx--col"/>
@@ -23,7 +33,7 @@ const Login = (props) => {
           <h2>Log in</h2>
           <p>Don't have an account? <a href="mailto:talar1997@outlook.com">Contact with administrator</a></p>
           <ToolbarDivider/>
-          <LoginForm/>
+          <SignInFormRedux onSubmit={handleSignIn} />
         </div>
       </div>
       <div className="bx--col"/>

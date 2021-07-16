@@ -2,9 +2,10 @@ import {Button, Form, TextInput} from "carbon-components-react"
 import {PasswordInput} from "carbon-components-react/lib/components/TextInput"
 import ArrowRight16 from "@carbon/icons-react/lib/arrow--right/16"
 
-export default function LoginForm(props) {
+export let SignInForm = props => {
+  const { handleSubmit } = props;
   return (
-    <Form style={{width: '100%'}}>
+    <Form style={{width: '100%'}} onSubmit={handleSubmit}>
       <TextInput
         id="one"
         labelText="Email"
