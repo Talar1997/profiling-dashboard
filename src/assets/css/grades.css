@@ -1,0 +1,14 @@
+.grade-tag {
+    font-size: 15px;
+    height: 28px;
+    width: 28px;
+    margin-right: 5px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.p-component:disabled{
+    opacity: 1 !important;
+}

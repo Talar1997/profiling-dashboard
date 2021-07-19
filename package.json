@@ -1,57 +1,62 @@
 {
-  "name": "profiling-dashboard",
-  "version": "0.1.0",
+  "name": "vue-app",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@carbon/icons-react": "^10.31.0",
-    "@carbon/pictograms-react": "^11.9.0",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "axios": "^0.21.1",
-    "carbon-components": "^10.34.0",
-    "carbon-components-react": "^7.34.0",
-    "carbon-icons": "^7.0.7",
-    "node-sass": "^5.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "redux": "^4.1.0",
-    "redux-form": "^8.3.7",
-    "redux-immutable-state-invariant": "^2.1.0",
-    "redux-thunk": "^2.3.0",
-    "web-vitals": "^1.1.1"
-  },
-  "devDependencies": {
-    "fetch-mock": "^9.11.0",
-    "jest": "^26.6.0",
-    "prettier": "^2.2.1",
-    "redux-mock-store": "^1.5.4"
+  "description": "",
+  "author": {
+    "name": "Adam Talarczyk, Martyna Buc"
   },
   "scripts": {
-    "start": "set PORT=8080 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "jest --watch",
-    "eject": "react-scripts eject"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@carbon/vue": "^2.39.0",
+    "axios": "^0.21.0",
+    "core-js": "^3.8.1",
+    "d3": "^7.0.0",
+    "mitt": "^2.1.0",
+    "primeflex": "^2.0.0",
+    "primeicons": "^4.1.0",
+    "primevue": "^3.1.1",
+    "vue": "^3.0.4",
+    "vue-moment": "^4.1.0",
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.9",
+    "@vue/cli-plugin-eslint": "^4.5.9",
+    "@vue/cli-service": "^4.5.9",
+    "@vue/compiler-sfc": "^3.0.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.2.0",
+    "prettier": "^1.19.1"
   },
   "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
     "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "vue-app@1.0.0",
+  "license": "ISC",
+  "readme": "ERROR: No README data found!"
 }

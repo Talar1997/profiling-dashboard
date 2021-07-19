@@ -1,0 +1,34 @@
+.login-dark {
+    background: #50a3a2;
+    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.full-height {
+    height: 100%;
+}
+
+.card-header {
+    font-size: 9rem;
+    color: #50a3a2;
+    margin: 0 auto !important;
+}
+
+.login-card {
+    max-width: 450px;
+    padding: 35px 15px 25px 15px;
+    margin: 0 auto !important;
+}
+
+.card-image-wrapper {
+    margin: 0 auto !important;
+    width: 9rem;
+}
+
+.p-grid {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.login-card > .p-card-header {
+    background: none;
+}

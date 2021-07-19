@@ -1,0 +1,69 @@
+#app, body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+}
+
+h2 {
+    color: rgb(55, 55, 55);
+}
+
+.content-wrapper {
+    padding: 10px 40px;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.page-header {
+    padding: 15px;
+}
+
+.page-header-h {
+    display: inline;
+}
+
+.page-spinner {
+    margin-left: 15px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.page-content {
+    padding: 25px !important;
+    background: rgb(250, 250, 250);
+    margin-bottom: 35px;
+}
+
+
+.p-card-header {
+    width: 100%;
+    height: 150px;
+    background-image: url("../img/notebook.jpg");
+    background-size: cover;
+}
+
+.header-replace {
+    width: 100%;
+    height: 150px;
+    background-color: rgb(240, 240, 240);
+    background-image: none;
+}
+
+.lineThrough {
+    text-decoration: line-through;
+}
+
+.width-100 {
+    width: 100%;
+}
