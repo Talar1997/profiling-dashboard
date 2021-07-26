@@ -4,6 +4,9 @@ import Dashboard from "@/views/Dashboard.vue";
 import Login from "@/views/Login.vue";
 import DataTest from "@/views/DataTest.vue";
 import NotFound from "@/views/NotFound";
+import Users from "@/views/Users";
+import ProfilingApis from "@/views/ProfilingApis";
+import Charts from "@/views/Charts";
 
 const routes = [
     {
@@ -20,7 +23,7 @@ const routes = [
         name: "NotFound",
         component: NotFound,
         meta: {
-            title: '404 - GradesApp',
+            title: '404 - Profiling Api',
             requireAuth: true,
         }
     },
@@ -29,7 +32,34 @@ const routes = [
         name: "Dashboard",
         component: Dashboard,
         meta: {
-            title: 'Twoje przedmioty - GradesApp',
+            title: 'Dashboard - Profiling Api',
+            requireAuth: true,
+        }
+    },
+    {
+        path: "/servers",
+        name: "Servers",
+        component: ProfilingApis,
+        meta: {
+            title: `Servers - Profiling Api`,
+            requireAuth: true,
+        }
+    },
+    {
+        path: "/users",
+        name: "Users",
+        component: Users,
+        meta: {
+            title: 'Users - Profiling Api',
+            requireAuth: true,
+        }
+    },
+    {
+        path: "/charts",
+        name: "Charts",
+        component: Charts,
+        meta: {
+            title: 'Charts - Profiling Api',
             requireAuth: true,
         }
     },
@@ -38,10 +68,11 @@ const routes = [
         name: "Login",
         component: Login,
         meta: {
-            title: 'Login - GradesApp',
+            title: 'Login - Profiling Api',
             requireAuth: false
         }
     },
+    //TODO: remove later alligator
     {
         path: "/test",
         name: "Test",

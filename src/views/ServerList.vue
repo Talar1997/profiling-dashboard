@@ -10,7 +10,7 @@
 import MainLayout from "@/layouts/Main";
 
 export default {
-  name: 'Dashboard',
+  name: 'SubjectDashboard',
   components: {
     MainLayout,
   },

@@ -5,11 +5,11 @@
         <p class="no-margin no-padding">Profiling Dashboard</p>
       </div>
       <RouterLinkElement id="dashboard" icon="pi-list" name="Dashboard"></RouterLinkElement>
-      <RouterLinkElement id="subjects" icon="pi-chart-line" name="Wykresy"></RouterLinkElement>
-      <RouterLinkElement id="users" icon="pi-sitemap" name="Użytkownicy"></RouterLinkElement>
-      <RouterLinkElement id="users" icon="pi-cloud" name="Serwery profilowania"></RouterLinkElement>
-      <RouterLinkElement id="test" icon="pi-palette" name="Panel testowy"></RouterLinkElement>
-      <RouterLinkElement id="login" icon="pi-arrow-circle-left" name="Wyloguj" v-on:click="logout"></RouterLinkElement>
+      <RouterLinkElement id="charts" icon="pi-chart-line" name="Detailed charts"></RouterLinkElement>
+      <RouterLinkElement id="users" icon="pi-sitemap" name="Users"></RouterLinkElement>
+      <RouterLinkElement id="servers" icon="pi-cloud" name="Servers"></RouterLinkElement>
+      <RouterLinkElement id="test" icon="pi-palette" name="TEST"></RouterLinkElement>
+      <RouterLinkElement id="login" icon="pi-arrow-circle-left" name="Logout" v-on:click="logout"></RouterLinkElement>
       <AppFooter></AppFooter>
     </ul>
 
