@@ -2,12 +2,12 @@
   <div class="sidebar">
     <ul class="sidebar-ul">
       <div class="sidebar-sign">
-        <p class="no-margin no-padding">Grades App</p>
+        <p class="no-margin no-padding">Profiling Dashboard</p>
       </div>
-      <RouterLinkElement id="dashboard" icon="pi-list" name="Twoje przedmioty"></RouterLinkElement>
-      <RouterLinkElement id="subjects" icon="pi-users" name="Wszystkie przedmioty"></RouterLinkElement>
+      <RouterLinkElement id="dashboard" icon="pi-list" name="Dashboard"></RouterLinkElement>
+      <RouterLinkElement id="subjects" icon="pi-chart-line" name="Wykresy"></RouterLinkElement>
       <RouterLinkElement id="users" icon="pi-sitemap" name="Użytkownicy"></RouterLinkElement>
-<!--      <RouterLinkElement id="test" icon="pi-palette" name="Panel testowy"></RouterLinkElement>-->
+      <RouterLinkElement id="test" icon="pi-palette" name="Panel testowy"></RouterLinkElement>
       <RouterLinkElement id="login" icon="pi-arrow-circle-left" name="Wyloguj" v-on:click="logout"></RouterLinkElement>
       <AppFooter></AppFooter>
     </ul>

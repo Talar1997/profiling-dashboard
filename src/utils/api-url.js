@@ -6,10 +6,8 @@ export const environmentType = `${process.env.VUE_APP_ENVIRONMENT}`;
 export const requireRecaptcha = `${process.env.VUE_APP_REQUIRE_RECAPTCHA}`;
 
 export const nodesUrl = {
-    students: `${fullUrl}/students`,
-    subjects: `${fullUrl}/subjects`,
     users: `${fullUrl}/users`,
-    login: `${fullUrl}/users/login`,
-    logout: `${fullUrl}/users/logout`,
+    login: `${fullUrl}/authorization`,
+    logout: `${fullUrl}/authorization`,
     tokenValidation: `${fullUrl}/users/validate`
 };

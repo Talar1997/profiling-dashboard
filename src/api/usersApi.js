@@ -1,4 +1,4 @@
-import {nodesUrl} from "../utils/api-url";
+import {nodesUrl} from "@/utils/api-url";
 import {deleteData, fetchData, fetchIdentifiedData, patchData, postData} from "./dataFetchApi";
 
 const endpointUrl = nodesUrl.users;
