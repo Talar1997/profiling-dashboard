@@ -7,6 +7,7 @@
       <RouterLinkElement id="dashboard" icon="pi-list" name="Dashboard"></RouterLinkElement>
       <RouterLinkElement id="subjects" icon="pi-chart-line" name="Wykresy"></RouterLinkElement>
       <RouterLinkElement id="users" icon="pi-sitemap" name="Użytkownicy"></RouterLinkElement>
+      <RouterLinkElement id="users" icon="pi-cloud" name="Serwery profilowania"></RouterLinkElement>
       <RouterLinkElement id="test" icon="pi-palette" name="Panel testowy"></RouterLinkElement>
       <RouterLinkElement id="login" icon="pi-arrow-circle-left" name="Wyloguj" v-on:click="logout"></RouterLinkElement>
       <AppFooter></AppFooter>
@@ -43,7 +44,7 @@ export default {
 
 .sidebar-sign {
   height: 50px;
-  background-color: #38a476;
+  background-color: #1167b1;
   color: white;
   font-weight: bold;
   text-align: center;

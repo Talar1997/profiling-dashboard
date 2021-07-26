@@ -17,13 +17,13 @@
 
 .add-wrapper {
     height: 374px;
-    background-color: #41b883;
+    background-color: #187bcd;
     transition: background-color .15s ease;
 
 }
 
 .add-wrapper:hover {
-    background-color: #38a476;
+    background-color: #2994ea;
     transition: background-color .15s ease;
     cursor: pointer;
 }

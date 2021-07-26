@@ -1,6 +1,6 @@
 .login-dark {
-    background: #50a3a2;
-    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+    background: #187bcd;
+    background: linear-gradient(to bottom right, #004b87 0%, #2994ea 100%);
 }
 
 .full-height {
@@ -9,7 +9,7 @@
 
 .card-header {
     font-size: 9rem;
-    color: #50a3a2;
+    color: #187bcd;
     margin: 0 auto !important;
 }
 

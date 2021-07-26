@@ -68,13 +68,13 @@ export default {
 }
 
 .sidebar-ul-li a.active {
-  background-color: #318c63;
+  background-color: #187bcd;
   color: white;
   font-weight: bold;
 }
 
 .sidebar-ul-li a:hover:not(.active) {
-  background-color: #5ab880;
+  background-color: #2994ea;
   color: white;
   transition: background-color .15s ease;
 }
