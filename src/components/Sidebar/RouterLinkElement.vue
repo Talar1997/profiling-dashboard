@@ -43,7 +43,6 @@ export default {
 
     setActiveRouteElement() {
       let routeName = this.$router.currentRoute.value.name.toLowerCase();
-      console.log(routeName)
       routeName = !routeName ? 'dashboard' : routeName;
 
       let selector = this.$refs[routeName] ? this.$refs[routeName].$el : null;
