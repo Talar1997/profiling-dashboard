@@ -1,6 +1,9 @@
 <template>
   <main-layout>
-    Dashboard
+    <div class="page-header">
+      <h1 class="page-header-h">Dashboard</h1>
+    </div>
+    Content...
   </main-layout>
 </template>
 

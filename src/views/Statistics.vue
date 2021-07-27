@@ -1,6 +1,9 @@
 <template>
   <main-layout>
-    Dashboard
+    <div class="page-header">
+      <h1 class="page-header-h">Usage and statistics</h1>
+    </div>
+    Content...
   </main-layout>
 </template>
 
@@ -10,7 +13,7 @@
 import MainLayout from "@/layouts/Main";
 
 export default {
-  name: 'Charts',
+  name: 'Statistics',
   components: {
     MainLayout,
   },

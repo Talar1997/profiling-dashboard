@@ -5,8 +5,8 @@ import Login from "@/views/Login.vue";
 import DataTest from "@/views/DataTest.vue";
 import NotFound from "@/views/NotFound";
 import Users from "@/views/Users";
-import ProfilingApis from "@/views/ProfilingApis";
-import Charts from "@/views/Charts";
+import ProfilingApis from "@/views/Servers";
+import Statistics from "@/views/Statistics";
 
 const routes = [
     {
@@ -55,11 +55,11 @@ const routes = [
         }
     },
     {
-        path: "/charts",
-        name: "Charts",
-        component: Charts,
+        path: "/statistics",
+        name: "Statistics",
+        component: Statistics,
         meta: {
-            title: 'Charts - Profiling Api',
+            title: 'Statistics - Profiling Api',
             requireAuth: true,
         }
     },
