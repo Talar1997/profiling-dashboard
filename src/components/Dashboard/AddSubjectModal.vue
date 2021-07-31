@@ -1,35 +1,33 @@
-<!--TODO: replace with server instead of Subject and change dialog to english-->
+<!--TODO: implement push to localStorage in store/modules/servers.js-->
+
 <template>
-  <Dialog v-model:visible="subjectDialog"
+  <Dialog v-model:visible="modalDialog"
           class="p-fluid add-subject-modal"
-          header="Dodaj nowy przedmiot"
+          header="Add new server"
           v-bind:modal="true">
     <div class="p-field">
-      <label for="name">Nazwa</label>
-      <InputText id="name" v-model.trim="subject.name" autofocus required="true"
-                 v-bind:class="{'p-invalid': submitted && !subject.name}"/>
-      <small v-if="submitted && !subject.name" class="p-invalid">Nazwa przedmiotu jest wymagana</small>
+      <label for="name">Name</label>
+      <InputText id="name" v-model.trim="server.name" autofocus required="true"
+                 v-bind:class="{'p-invalid': submitted && !server.name}"/>
+      <small v-if="submitted && !server.name" class="p-invalid">Name is required</small>
     </div>
     <div class="p-field">
-      <label for="name">Data pierwszych zajęć</label>
-      <Calendar id="date"
-                v-model="subject.date"
-                v-bind:inline="true"/>
-      <small v-if="submitted && !subject.date" class="p-invalid">Data jest wymagana</small>
+      <label for="ip_address">IP Address</label>
+      <InputText id="ip_address" v-model.trim="server.ipAddress" required="true"
+                 v-bind:class="{'p-invalid': submitted && !server.name}"/>
+      <small v-if="submitted && !server.name" class="p-invalid">Server IP address is required</small>
     </div>
     <div class="p-field">
-      <label for="name">Godzina zajęć</label>
-      <Calendar id="time"
-                v-model="subject.hours"
-                v-bind:inline="true"
-                v-bind:showTime="true"
-                v-bind:timeOnly="true"/>
-      <small v-if="submitted && !subject.hours" class="p-invalid">Godzina jest wymagana</small>
+      <label for="api_key">Api key</label>
+      <InputText id="api_key" v-model.trim="server.apiKey" required="true"
+                 v-bind:class="{'p-invalid': submitted && !server.name}"/>
+      <small v-if="submitted && !server.name" class="p-invalid">Api key is required</small>
     </div>
 
+
     <template #footer>
-      <Button class="p-button-text p-button-secondary" icon="pi pi-times" label="Anuluj" v-on:click="hideDialog"/>
-      <Button class="p-button" icon="pi pi-check" label="Zapisz" v-on:click="saveSubject"/>
+      <Button class="p-button-text p-button-secondary" icon="pi pi-times" label="Cancel" v-on:click="hideDialog"/>
+      <Button class="p-button" icon="pi pi-check" label="Connect" v-on:click="connectServer"/>
     </template>
   </Dialog>
 </template>
@@ -38,9 +36,9 @@
 import Button from "primevue/components/button/Button";
 import InputText from "primevue/components/inputtext/InputText";
 import Dialog from "primevue/components/dialog/Dialog";
-import Calendar from 'primevue/calendar';
 import {mapActions} from "vuex";
 import {notificationMixin} from "@/mixins/notificationMixin";
+import {TOGGLE_ADD_SERVER_MODAL} from "events";
 
 export default {
   name: "AddSubjectModal",
@@ -48,14 +46,13 @@ export default {
     Dialog,
     InputText,
     Button,
-    Calendar
   },
 
   data() {
     return {
-      subjectDialog: false,
+      modalDialog: false,
       submitted: false,
-      subject: {},
+      server: {},
     }
   },
 
@@ -69,32 +66,32 @@ export default {
     ]),
 
     hideDialog() {
-      this.subjectDialog = false;
+      this.modalDialog = false;
       this.submitted = false;
     },
 
-    saveSubject() {
+    connectServer() {
       this.submitted = true;
-      this.subject.owner = JSON.parse(localStorage.getItem('user')).data.user._id;
+      this.server.owner = JSON.parse(localStorage.getItem('user')).data.user._id;
 
-      this.subject.date.setHours(this.subject.hours.getHours() + 1)
-      this.subject.date.setMinutes(this.subject.hours.getMinutes())
+      this.server.date.setHours(this.server.hours.getHours() + 1)
+      this.server.date.setMinutes(this.server.hours.getMinutes())
 
-      this.createNewSubject(this.subject)
+      this.createNewSubject(this.server)
           .then(() => {
-            this.pushSuccess("Sukces", "Utworzono nowy przedmiot");
-            this.subjectDialog = false;
-            this.subject = {};
+            this.pushSuccess("Success", "Added server to list");
+            this.modalDialog = false;
+            this.server = {};
           })
           .catch(() => {
-            this.pushError("Błąd", "Wystąpił błąd podczas tworzenia nowego przedmiotu");
+            this.pushError("Error", "Cannot connect to server. Check address or API key");
           });
     }
   },
   mounted() {
-    this.emitter.on("toggle-add-subject-modal", isOpen => {
-      this.subjectDialog = isOpen;
-      this.subject = {};
+    this.emitter.on(TOGGLE_ADD_SERVER_MODAL, isOpen => {
+      this.modalDialog = isOpen;
+      this.server = {};
       this.submitted = false;
     });
   }

@@ -20,6 +20,7 @@
 <script>
 import Card from "primevue/components/card/Card";
 import AddSubjectModal from "@/components/Dashboard/AddSubjectModal";
+import {TOGGLE_ADD_SERVER_MODAL} from "events";
 
 export default {
   name: "AddServerCard",
@@ -36,7 +37,7 @@ export default {
   methods: {
     openNew() {
       this.subjectDialog = true;
-      this.emitter.emit("toggle-add-subject-modal", this.subjectDialog);
+      this.emitter.emit(TOGGLE_ADD_SERVER_MODAL, this.subjectDialog);
     },
   },
 }

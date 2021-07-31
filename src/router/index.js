@@ -55,7 +55,7 @@ const routes = [
         }
     },
     {
-        path: "/statistics",
+        path: "/statisticst",
         name: "Statistics",
         component: Statistics,
         meta: {

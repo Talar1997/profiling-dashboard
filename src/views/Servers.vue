@@ -13,11 +13,11 @@
     </div>
 
     <div v-else class="p-grid p-ai-stretch vertical-container">
-      <div v-for="subject in servers"
-           v-bind:key="subject._id"
+      <div v-for="server in servers"
+           v-bind:key="server._id"
            class="p-col-3 p-md-6 p-lg-4 p-sm-12 p-xl-3">
         <div class="box box-stretched">
-          <ServerCard v-bind:subject="subject"></ServerCard>
+          <ServerCard v-bind:server="server"></ServerCard>
         </div>
       </div>
 
@@ -35,6 +35,8 @@ import MainLayout from "@/layouts/Main";
 import LoadingCard from "@/components/Dashboard/LoadingCard";
 import ServerCard from "@/components/Dashboard/ServerCard";
 import AddServerCard from "@/components/Dashboard/AddServerCard";
+import {mapState} from "vuex";
+import {serversMixin} from "@/mixins/serversMixin";
 
 export default {
   name: 'Servers',
@@ -44,10 +46,24 @@ export default {
     ServerCard,
     AddServerCard
   },
+
+  mixins: [serversMixin],
+
+  computed: {
+    ...mapState({
+      allServers: state => state.servers.all,
+    }),
+  },
+
+  created() {
+    this.getAllServers().then(() => {
+      this.servers = this.allServers;
+      this.stopLoadingDocuments(500);
+    })
+  },
+
   data() {
     return {
-      servers: null,
-      serversLoading: true,
       userId: JSON.parse(localStorage.getItem('user')).data.user._id,
     }
   },
