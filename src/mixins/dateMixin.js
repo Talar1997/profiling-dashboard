@@ -3,6 +3,7 @@ import moment from 'moment'
 export const dateMixin = {
     methods: {
         toClearDate(date) {
+            if(!date) return "N/A"
             let newDate = moment(new Date(date))
             return newDate.format('DD/MM/YYYY')
         },
