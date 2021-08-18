@@ -7,6 +7,7 @@ import NotFound from "@/views/NotFound";
 import Users from "@/views/Users";
 import ProfilingApis from "@/views/Servers";
 import Statistics from "@/views/Statistics";
+import User from "@/views/User";
 
 const routes = [
     {
@@ -55,6 +56,15 @@ const routes = [
         }
     },
     {
+        path: "/user/:id",
+        name: "User",
+        component: User,
+        meta: {
+            title: 'Przedmiot - GradesApp',
+            requireAuth: true,
+        }
+    },
+    {
         path: "/statisticst",
         name: "Statistics",
         component: Statistics,
@@ -72,7 +82,7 @@ const routes = [
             requireAuth: false
         }
     },
-    //TODO: remove later alligator
+    //FIXME: remove later alligator
     {
         path: "/test",
         name: "Test",

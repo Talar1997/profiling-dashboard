@@ -1,7 +1,8 @@
-import {fetchAllUsers} from "@/api/usersApi";
+import {fetchAllUsers, fetchUserById} from "@/api/usersApi";
 
 const state = () => ({
-    all: []
+    all: [],
+    user: null
 })
 
 const getters = {
@@ -13,6 +14,12 @@ const actions = {
         await fetchAllUsers().then(result => {
             commit('setUsers', result)
         })
+    },
+
+    async getUserDetails({commit}, id){
+        await fetchUserById(id).then(result => {
+            commit('setUserDetails', result)
+        })
     }
 }
 
@@ -20,6 +27,10 @@ const mutations = {
     setUsers(state, users) {
         state.all = users
     },
+
+    setUserDetails(state, user) {
+        state.user = user
+    }
 }
 
 export default {

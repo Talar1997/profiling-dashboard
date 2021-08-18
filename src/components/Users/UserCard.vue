@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'Dashboard', /*params: { id: server._id  }*/}" style="text-decoration: none">
+  <router-link :to="{ name: 'User', params: { id: user._id  }}" style="text-decoration: none">
     <BlockUI v-bind:blocked="!user.active"
              v-on:mouseout="isHovering = false"
              v-on:mouseover="isHovering = true">
@@ -21,7 +21,7 @@
           </div>
         </template>
         <template #footer>
-          <router-link :to="{ name: 'Dashboard', /*params: { id: server._id  }*/}" class="float-right">
+          <router-link :to="{ name: 'User', params: { id: user._id  }}" class="float-right">
             <Button class="p-button-text p-button-primary" icon="pi pi-arrow-right"/>
           </router-link>
           <div class="clear-both"></div>
