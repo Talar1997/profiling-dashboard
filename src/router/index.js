@@ -5,9 +5,10 @@ import Login from "@/views/Login.vue";
 import DataTest from "@/views/DataTest.vue";
 import NotFound from "@/views/NotFound";
 import Users from "@/views/Users";
-import ProfilingApis from "@/views/Servers";
-import Statistics from "@/views/Statistics";
+// import ProfilingApis from "@/views/Servers";
+// import Statistics from "@/views/Statistics";
 import User from "@/views/User";
+import Logs from "@/views/Logs";
 
 const routes = [
     {
@@ -37,15 +38,15 @@ const routes = [
             requireAuth: true,
         }
     },
-    {
-        path: "/servers",
-        name: "Servers",
-        component: ProfilingApis,
-        meta: {
-            title: `Servers - Profiling Api`,
-            requireAuth: true,
-        }
-    },
+    // {
+    //     path: "/servers",
+    //     name: "Servers",
+    //     component: ProfilingApis,
+    //     meta: {
+    //         title: `Servers - Profiling Api`,
+    //         requireAuth: true,
+    //     }
+    // },
     {
         path: "/users",
         name: "Users",
@@ -64,21 +65,30 @@ const routes = [
             requireAuth: true,
         }
     },
-    {
-        path: "/statisticst",
-        name: "Statistics",
-        component: Statistics,
-        meta: {
-            title: 'Statistics - Profiling Api',
-            requireAuth: true,
-        }
-    },
+    // {
+    //     path: "/statistics",
+    //     name: "Statistics",
+    //     component: Statistics,
+    //     meta: {
+    //         title: 'Statistics - Profiling Api',
+    //         requireAuth: true,
+    //     }
+    // },
     {
         path: "/login",
         name: "Login",
         component: Login,
         meta: {
             title: 'Login - Profiling Api',
+            requireAuth: false
+        }
+    },
+    {
+        path: "/logs",
+        name: "Logs",
+        component: Logs,
+        meta: {
+            title: 'Logs - Profiling Api',
             requireAuth: false
         }
     },

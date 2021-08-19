@@ -2,7 +2,13 @@
   <main-layout>
     <div class="page-header">
       <h1 class="page-header-h">User details</h1>
+    </div>
+
+    <div>
       {{userDetails}}
+      <!--      TODO: user details box-->
+      <!--      TODO: users log table-->
+      <!--      TODO: activity statistics? Chart with action per day-->
     </div>
   </main-layout>
 </template>

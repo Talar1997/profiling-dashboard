@@ -5,10 +5,11 @@
         <p class="no-margin no-padding">Profiling Dashboard</p>
       </div>
       <RouterLinkElement id="dashboard" icon="pi-list" name="Dashboard"></RouterLinkElement>
-      <RouterLinkElement id="statistics" icon="pi-chart-line" name="Statistics"></RouterLinkElement>
+<!--      <RouterLinkElement id="statistics" icon="pi-chart-line" name="Statistics"></RouterLinkElement>-->
       <RouterLinkElement id="users" icon="pi-sitemap" name="Users"></RouterLinkElement>
-      <RouterLinkElement id="servers" icon="pi-cloud" name="Servers"></RouterLinkElement>
-      <RouterLinkElement id="test" icon="pi-palette" name="TEST"></RouterLinkElement>
+      <RouterLinkElement id="logs" icon="pi-book" name="Logs"></RouterLinkElement>
+<!--      <RouterLinkElement id="servers" icon="pi-cloud" name="Servers"></RouterLinkElement>-->
+<!--      <RouterLinkElement id="test" icon="pi-palette" name="TEST"></RouterLinkElement>-->
       <RouterLinkElement id="login" icon="pi-arrow-circle-left" name="Logout" v-on:click="logout"></RouterLinkElement>
       <AppFooter></AppFooter>
     </ul>
