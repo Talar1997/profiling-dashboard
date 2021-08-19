@@ -9,5 +9,6 @@ export const nodesUrl = {
     users: `${fullUrl}/users`,
     login: `${fullUrl}/authorization`,
     logout: `${fullUrl}/authorization`,
-    tokenValidation: `${fullUrl}/users/validate`
+    tokenValidation: `${fullUrl}/users/validate`,
+    logs: `${fullUrl}/logs`
 };
