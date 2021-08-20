@@ -10,7 +10,7 @@
                v-bind:rows="10"
                v-bind:totalRecords="totalRecords"
                v-bind:loading="loading"
-               v-bind:globalFilterFields="['name','country.name', 'company', 'representative.name']"
+               v-bind:rowsPerPageOptions="[10,20,50]"
                v-on:page="onPage($event)"
                v-on:sort="onSort($event)"
                v-on:filter="onFilter($event)"
@@ -19,9 +19,20 @@
                filterDisplay="row"
                responsiveLayout="scroll">
 
-      <Column field="level" header="Company" ref="level" v-bind:sortable="true">
-
+      <!--      TODO: add badge for level-->
+      <Column field="level" header="SEVERITY" ref="level" v-bind:sortable="true" headerStyle="width: 120px"/>
+      <!--      TODO: add badge for action.method-->
+      <Column field="action.method" header="ACTION" ref="action.method" v-bind:sortable="true" headerStyle="width: 120px" />
+      <Column field="targetObject.name" header="TARGET" ref="targetObject.name" v-bind:sortable="true">
+        <template #body="slotProps">
+          <span>{{slotProps.data.action.url}}, id: {{slotProps.data.targetObject._id}}</span>
+        </template>
       </Column>
+      <Column field="performedBy.email" header="PERFORMED BY" ref="performedBy.email" v-bind:sortable="true" />
+
+      <Column field="issuedAtISO" header="ISSUED AT" ref="issuedAtISO" v-bind:sortable="true" />
+      <Column header="ACTIONS" ref="actions"  headerStyle="width: 100px"/>
+
 <!--      <Column field="representative.name" header="Representative" filterField="representative.name" ref="representative.name" :sortable="true">-->
 <!--        <template #filter="{filterModel,filterCallback}">-->
 <!--          <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()" class="p-column-filter" placeholder="Search by representative"/>-->
@@ -35,8 +46,7 @@
 <script>
 import MainLayout from "@/layouts/Main";
 import DataTable from "primevue/components/datatable/DataTable";
-// import InputText from "primevue/components/inputtext/InputText";
-import {fetchAllLogs} from "@/api/logsApi";
+import {fetchAllLogs, fetchNumberOfLogs} from "@/api/logsApi";
 import Column from "primevue/components/column/Column";
 
 export default {
@@ -44,7 +54,6 @@ export default {
   components: {
     MainLayout,
     DataTable,
-    // InputText,
     Column
   },
 
@@ -62,10 +71,10 @@ export default {
       lazyParams: {},
       columns: [
         {field: 'level', header: 'Severity'},
-        {field: 'country.name', header: 'Action'},
-        {field: 'company', header: 'Performed On'},
-        {field: 'representative.name', header: 'Performed By'},
-        {field: 'representative.name', header: 'Issued At'}
+        {field: 'action.method', header: 'Action'},
+        {field: 'targetObject.name', header: 'Performed On'},
+        {field: 'performedBy.email', header: 'Performed By'},
+        {field: 'issuedAtISO', header: 'Issued At'},
       ]
     }
   },
@@ -87,13 +96,20 @@ export default {
   methods: {
     async loadLazyData() {
       //TODO: change for vuex store
+
+      await fetchNumberOfLogs().then(result => {
+        this.totalRecords = result
+      })
+
       await fetchAllLogs({page:1, limit:20}).then((results)=> {
         this.loading = false
         this.logList = results
       })
-      console.log(this.logList)
+
     },
     onPage(event) {
+      //TODO: implement pagination onPage change
+      console.log("on page event...")
       this.lazyParams = event;
       this.loadLazyData();
     },
