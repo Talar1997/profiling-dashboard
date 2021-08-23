@@ -7,10 +7,10 @@
     <DataTable v-bind:value="logList"
                v-bind:lazy="true"
                v-bind:paginator="true"
-               v-bind:rows="10"
+               v-bind:rows="pagination.limit"
                v-bind:totalRecords="totalRecords"
                v-bind:loading="loading"
-               v-bind:rowsPerPageOptions="[10,20,50]"
+               v-bind:rowsPerPageOptions="[10,20,30]"
                v-on:page="onPage($event)"
                v-on:sort="onSort($event)"
                v-on:filter="onFilter($event)"
@@ -19,25 +19,30 @@
                filterDisplay="row"
                responsiveLayout="scroll">
 
-      <!--      TODO: add badge for level-->
-      <Column field="level" header="SEVERITY" ref="level" v-bind:sortable="true" headerStyle="width: 120px"/>
-      <!--      TODO: add badge for action.method-->
-      <Column field="action.method" header="ACTION" ref="action.method" v-bind:sortable="true" headerStyle="width: 120px" />
+      <Column field="level" header="SEVERITY" ref="level" v-bind:sortable="true" headerStyle="width: 120px">
+        <template #body="slotProps">
+          <Badge v-bind:value="slotProps.data.level" v-bind:severity="computeVariant(slotProps.data.level)"></Badge>
+        </template>
+      </Column>
+
+      <Column field="action.method" header="ACTION" ref="action.method" v-bind:sortable="true" headerStyle="width: 120px">
+        <template #body="slotProps">
+          <Badge v-bind:value="slotProps.data.action.method" v-bind:severity="computeMethodVariant(slotProps.data.action.method)"></Badge>
+        </template>
+      </Column>
       <Column field="targetObject.name" header="TARGET" ref="targetObject.name" v-bind:sortable="true">
         <template #body="slotProps">
-          <span>{{slotProps.data.action.url}}, id: {{slotProps.data.targetObject._id}}</span>
+          <span> {{computeResourceType(slotProps.data.action.url)}}</span>
         </template>
       </Column>
       <Column field="performedBy.email" header="PERFORMED BY" ref="performedBy.email" v-bind:sortable="true" />
 
-      <Column field="issuedAtISO" header="ISSUED AT" ref="issuedAtISO" v-bind:sortable="true" />
+      <Column field="issuedAtISO" header="ISSUED AT" ref="issuedAtISO" v-bind:sortable="true">
+        <template #body="slotProps">
+          <span> {{simplifyDate(slotProps.data.issuedAtISO)}}</span>
+        </template>
+      </Column>
       <Column header="ACTIONS" ref="actions"  headerStyle="width: 100px"/>
-
-<!--      <Column field="representative.name" header="Representative" filterField="representative.name" ref="representative.name" :sortable="true">-->
-<!--        <template #filter="{filterModel,filterCallback}">-->
-<!--          <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()" class="p-column-filter" placeholder="Search by representative"/>-->
-<!--        </template>-->
-<!--      </Column>-->
     </DataTable>
 
   </main-layout>
@@ -48,14 +53,19 @@ import MainLayout from "@/layouts/Main";
 import DataTable from "primevue/components/datatable/DataTable";
 import {fetchAllLogs, fetchNumberOfLogs} from "@/api/logsApi";
 import Column from "primevue/components/column/Column";
+import Badge from 'primevue/badge';
+import {logsMixin} from "@/mixins/logsMixin";
 
 export default {
   name: "Logs",
   components: {
     MainLayout,
     DataTable,
-    Column
+    Column,
+    Badge
   },
+
+  mixins: [logsMixin],
 
   data() {
     return {
@@ -68,59 +78,61 @@ export default {
         'company': {value: '', matchMode: 'contains'},
         'representative.name': {value: '', matchMode: 'contains'},
       },
-      lazyParams: {},
       columns: [
         {field: 'level', header: 'Severity'},
         {field: 'action.method', header: 'Action'},
         {field: 'targetObject.name', header: 'Performed On'},
         {field: 'performedBy.email', header: 'Performed By'},
         {field: 'issuedAtISO', header: 'Issued At'},
-      ]
+      ],
+      pagination:{
+        limit: 10,
+        currentPage: 1,
+      }
     }
   },
 
   mounted() {
     this.loading = true;
 
-    this.lazyParams = {
-      first: 0,
-      rows: this.$refs.dt.rows,
-      sortField: null,
-      sortOrder: null,
-      filters: this.filters
-    };
+    const queryPage = this.$route.query.page
+    if(queryPage)
+      this.pagination.currentPage = queryPage;
 
     this.loadLazyData();
   },
 
   methods: {
     async loadLazyData() {
-      //TODO: change for vuex store
+      this.loading = true;
 
       await fetchNumberOfLogs().then(result => {
         this.totalRecords = result
       })
 
-      await fetchAllLogs({page:1, limit:20}).then((results)=> {
+      await fetchAllLogs({page: this.pagination.currentPage, limit:this.pagination.limit}).then((results)=> {
         this.loading = false
         this.logList = results
       })
 
     },
+
     onPage(event) {
-      //TODO: implement pagination onPage change
-      console.log("on page event...")
-      this.lazyParams = event;
+      this.pagination.currentPage = event.page + 1;
+      this.pagination.limit = event.rows;
+      this.$router.replace({ name: "Logs", query: {page: this.pagination.currentPage} })
+
       this.loadLazyData();
     },
-    onSort(event) {
-      this.lazyParams = event;
+
+    onSort() {
       this.loadLazyData();
     },
+
     onFilter() {
-      this.lazyParams.filters = this.filters;
+
       this.loadLazyData();
-    }
+    },
   },
 }
 </script>
