@@ -42,9 +42,12 @@
           <span> {{simplifyDate(slotProps.data.issuedAtISO)}}</span>
         </template>
       </Column>
-      <Column header="ACTIONS" ref="actions"  headerStyle="width: 100px"/>
+      <Column v-bind:exportable="false" ref="actions" headerStyle="width: 150px">
+        <template #body="slotProps">
+          <Button icon="pi pi-info" class="p-button-outlined p-button-rounded p-button-info p-mr-2" @click="console.log(slotProps.data)" />
+        </template>
+      </Column>
     </DataTable>
-
   </main-layout>
 </template>
 
@@ -55,6 +58,7 @@ import {fetchAllLogs, fetchNumberOfLogs} from "@/api/logsApi";
 import Column from "primevue/components/column/Column";
 import Badge from 'primevue/badge';
 import {logsMixin} from "@/mixins/logsMixin";
+import Button from "primevue/components/button/Button";
 
 export default {
   name: "Logs",
@@ -62,7 +66,8 @@ export default {
     MainLayout,
     DataTable,
     Column,
-    Badge
+    Badge,
+    Button
   },
 
   mixins: [logsMixin],
