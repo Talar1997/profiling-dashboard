@@ -98,7 +98,6 @@ export default {
       this.stopLoadingDocuments(500);
       this.userList = this.users;
     })
-
   },
 
 }

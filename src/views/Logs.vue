@@ -54,11 +54,11 @@
 <script>
 import MainLayout from "@/layouts/Main";
 import DataTable from "primevue/components/datatable/DataTable";
-import {fetchAllLogs, fetchNumberOfLogs} from "@/api/logsApi";
 import Column from "primevue/components/column/Column";
 import Badge from 'primevue/badge';
 import {logsMixin} from "@/mixins/logsMixin";
 import Button from "primevue/components/button/Button";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "Logs",
@@ -107,19 +107,31 @@ export default {
     this.loadLazyData();
   },
 
+  computed: {
+    ...mapState({
+      logs: state => state.logs.all,
+      numberOfLogs: state => state.logs.numberOfLogs
+    }),
+  },
+
   methods: {
+    ...mapActions('logs', [
+        'getNumberOfLogs',
+        'getAllLogs'
+    ]),
+
     async loadLazyData() {
       this.loading = true;
 
-      await fetchNumberOfLogs().then(result => {
-        this.totalRecords = result
+      this.getNumberOfLogs().then(() => {
+        this.totalRecords = this.numberOfLogs;
       })
 
-      await fetchAllLogs({page: this.pagination.currentPage, limit:this.pagination.limit}).then((results)=> {
+      const query = {page: this.pagination.currentPage, limit:this.pagination.limit}
+      this.getAllLogs(query).then(() => {
         this.loading = false
-        this.logList = results
+        this.logList = this.logs
       })
-
     },
 
     onPage(event) {

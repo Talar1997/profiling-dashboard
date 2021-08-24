@@ -1,17 +1,25 @@
-import {fetchAllLogs, fetchLogById} from "@/api/logsApi";
+import {fetchAllLogs, fetchLogById, fetchNumberOfLogs} from "@/api/logsApi";
 
 const state = () => ({
     all: [],
+    numberOfLogs: 0,
     log: null
 })
 
 const getters = {
     getUsers: state => state.all,
+    getLogsNumber: state => state.numberOfLogs,
 }
 
 const actions = {
-    async getAllLogs({commit}) {
-        await fetchAllLogs().then(result => {
+    async getNumberOfLogs({commit}){
+        await fetchNumberOfLogs().then(result => {
+            commit('setNumberOfAllLogs', result)
+        })
+    },
+
+    async getAllLogs({commit}, query) {
+        await fetchAllLogs(query).then(result => {
             commit('setLogs', result)
         })
     },
@@ -24,6 +32,10 @@ const actions = {
 }
 
 const mutations = {
+    setNumberOfAllLogs(state, number) {
+        state.numberOfLogs = number
+    },
+
     setLogs(state, logs) {
         state.all = logs
     },
