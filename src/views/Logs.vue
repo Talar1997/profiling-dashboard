@@ -44,10 +44,13 @@
       </Column>
       <Column v-bind:exportable="false" ref="actions" headerStyle="width: 150px">
         <template #body="slotProps">
-          <Button icon="pi pi-info" class="p-button-outlined p-button-rounded p-button-info p-mr-2" @click="console.log(slotProps.data)" />
+          <Button icon="pi pi-info" class="p-button-outlined p-button-rounded p-button-info p-mr-2"
+                  v-on:click="openLogDetailsModal(slotProps.data)" />
         </template>
       </Column>
     </DataTable>
+
+    <LogsDetailsModal />
   </main-layout>
 </template>
 
@@ -59,10 +62,12 @@ import Badge from 'primevue/badge';
 import {logsMixin} from "@/mixins/logsMixin";
 import Button from "primevue/components/button/Button";
 import {mapActions, mapState} from "vuex";
+import LogsDetailsModal from "@/components/Logs/LogsDetailsModal";
 
 export default {
   name: "Logs",
   components: {
+    LogsDetailsModal,
     MainLayout,
     DataTable,
     Column,
@@ -93,7 +98,7 @@ export default {
       pagination:{
         limit: 10,
         currentPage: 1,
-      }
+      },
     }
   },
 
@@ -134,6 +139,10 @@ export default {
       })
     },
 
+    openLogDetailsModal(log){
+      this.emitter.emit("toggle-log-details-modal", log);
+    },
+
     onPage(event) {
       this.pagination.currentPage = event.page + 1;
       this.pagination.limit = event.rows;
@@ -147,7 +156,6 @@ export default {
     },
 
     onFilter() {
-
       this.loadLazyData();
     },
   },
