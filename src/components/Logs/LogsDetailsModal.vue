@@ -1,4 +1,5 @@
 <template>
+<!--  TODO: move to separate components each group of labels-->
   <Dialog v-model:visible="isVisible"
           class="p-fluid log-modal"
           v-bind:modal="true">
@@ -12,7 +13,8 @@
       </span>
     </template>
 
-    <hr>
+    <hr class="hr-separator">
+
     <div class="data-group">
       <h4>Action details</h4>
       <div class="p-field p-grid data-item">
@@ -28,7 +30,8 @@
         </div>
       </div>
     </div>
-    <hr>
+
+    <hr class="hr-separator">
 
     <div class="data-group">
       <h4>Action performed by</h4>
@@ -53,15 +56,39 @@
       <div class="p-field p-grid data-item">
         <label for="ip" class="p-col-fixed" style="width:100px">Remote Ip</label>
         <div class="p-col">
-          <InputText id="ip" type="text" v-bind:disabled="true" v-bind:value="log.performedBy.remoteIp"/>
+          <InputText id="ip" type="text" v-bind:disabled="true" v-bind:value="log.remoteIp"/>
         </div>
       </div>
+
     </div>
-    <hr>
+    <hr class="hr-separator">
     <div class="data-group">
       <h4>Target object</h4>
-      <span>Issued At</span> <span>{{ log.issuedAt }}</span>
-      <span>Performed on</span> <span>{{ log}}</span>
+      <div v-if="log.targetObject.before">
+        Before
+        <code>
+          <div v-for="(value, propertyName) in log.targetObject.before" v-bind:key="propertyName">
+            <strong v-if="isDifferent(propertyName)">{{propertyName}}: {{ value }}</strong>
+            <span v-else>{{propertyName}}: {{ value }}</span>
+          </div>
+        </code>
+
+        After
+        <code>
+          <div v-for="(value, propertyName) in log.targetObject.after" v-bind:key="propertyName">
+            <strong v-if="isDifferent(propertyName)">{{propertyName}}: {{ value }}</strong>
+            <span v-else>{{propertyName}}: {{ value }}</span>
+          </div>
+        </code>
+      </div>
+      <div v-else>
+        <code>
+          <div v-for="(value, propertyName) in log.targetObject" v-bind:key="propertyName">
+            {{propertyName}}: {{ value }}
+          </div>
+        </code>
+      </div>
+
     </div>
 
     <template #footer>
@@ -107,6 +134,12 @@ export default {
     closeDialog() {
       this.isVisible = false;
       this.log = {};
+    },
+
+    isDifferent(propertyName){
+      const before = JSON.stringify(this.log.targetObject.before[propertyName])
+      const after = JSON.stringify(this.log.targetObject.after[propertyName])
+      return before !== after
     }
   },
 }
@@ -145,5 +178,16 @@ code{
   padding: 1em 1em;
   display: block;
   word-wrap: break-word;
+}
+
+input:disabled{
+  color: black;
+}
+
+hr.hr-separator {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 </style>
