@@ -1,0 +1,44 @@
+.p-dialog-header{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.log-modal{
+    width: 650px !important;
+}
+.dialog-header-item{
+    margin: 3px;
+}
+.data-group{
+    margin: 5px;
+}
+
+.data-item{
+    padding: 5px !important;
+}
+
+code{
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #4e73df;
+    color: #666;
+    page-break-inside: avoid;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1em;
+    display: block;
+    word-wrap: break-word;
+}
+
+input:disabled{
+    color: black;
+}
+
+hr.hr-separator {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
