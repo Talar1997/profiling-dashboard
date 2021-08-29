@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1 class="page-header-h">Dashboard</h1>
     </div>
-    Content...
+    <MemoryDonutChart v-bind:utilization-data="null" />
   </main-layout>
 </template>
 
@@ -11,19 +11,33 @@
 
 
 import MainLayout from "@/layouts/Main";
+import MemoryDonutChart from "@/components/Dashboard/Charts/MemoryDonutChart";
+import {fetchCurrentUtilizationData} from "@/api/utilizationApi";
 
 export default {
   name: 'Dashboard',
   components: {
+    MemoryDonutChart,
     MainLayout,
   },
   data() {
     return {
-      subjects: null,
-      subjectsLoading: true,
-      userId: JSON.parse(localStorage.getItem('user')).data.user._id,
+      utilizationModel: {}
     }
   },
+
+  methods: {
+    getData() {
+      fetchCurrentUtilizationData().then(result => {
+        console.log(result)
+        this.utilizationModel = result
+      })
+    }
+  },
+
+  mounted() {
+    this.getData()
+  }
 
 }
 </script>

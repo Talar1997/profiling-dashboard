@@ -11,5 +11,8 @@ export const nodesUrl = {
     logout: `${fullUrl}/authorization`,
     tokenValidation: `${fullUrl}/users/validate`,
     logs: `${fullUrl}/logs`,
-    numberOfLogs: `${fullUrl}/logs/number`
+    numberOfLogs: `${fullUrl}/logs/number`,
+    utilization: `${fullUrl}/utilization`,
+    utilizationLastDay: `${fullUrl}/utilization/lastDay`,
+    utilizationCurrent: `${fullUrl}/utilization/current`
 };

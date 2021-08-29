@@ -6,9 +6,9 @@ import DataTest from "@/views/DataTest.vue";
 import NotFound from "@/views/NotFound";
 import Users from "@/views/Users";
 // import ProfilingApis from "@/views/Servers";
-// import Statistics from "@/views/Statistics";
 import User from "@/views/User";
 import Logs from "@/views/Logs";
+import Statistics from "@/views/Statistics";
 
 const routes = [
     {
@@ -65,15 +65,15 @@ const routes = [
             requireAuth: true,
         }
     },
-    // {
-    //     path: "/statistics",
-    //     name: "Statistics",
-    //     component: Statistics,
-    //     meta: {
-    //         title: 'Statistics - Profiling Api',
-    //         requireAuth: true,
-    //     }
-    // },
+    {
+        path: "/statistics",
+        name: "Statistics",
+        component: Statistics,
+        meta: {
+            title: 'Statistics - Profiling Api',
+            requireAuth: true,
+        }
+    },
     {
         path: "/login",
         name: "Login",
