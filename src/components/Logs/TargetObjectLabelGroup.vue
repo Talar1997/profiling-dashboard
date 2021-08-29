@@ -1,22 +1,28 @@
 <template>
   <div class="data-group">
     <h4>Target object</h4>
-    <div v-if="log.targetObject.before">
-      Before
-      <code>
-        <div v-for="(value, propertyName) in log.targetObject.before" v-bind:key="propertyName">
-          <strong v-if="isDifferent(propertyName)">{{propertyName}}: {{ value }}</strong>
-          <span v-else>{{propertyName}}: {{ value }}</span>
-        </div>
-      </code>
 
-      After
-      <code>
-        <div v-for="(value, propertyName) in log.targetObject.after" v-bind:key="propertyName">
-          <strong v-if="isDifferent(propertyName)">{{propertyName}}: {{ value }}</strong>
-          <span v-else>{{propertyName}}: {{ value }}</span>
+    <div v-if="log.targetObject.before">
+      <div class="p-grid">
+        <div class="p-col">
+          Before
+          <code>
+            <div v-for="(value, propertyName) in log.targetObject.before" v-bind:key="propertyName">
+              <strong v-if="isDifferent(propertyName)">{{propertyName}}: {{ value }}</strong>
+              <span v-else>{{propertyName}}: {{ value }}</span>
+            </div>
+          </code>
         </div>
-      </code>
+        <div class="p-col">
+          After
+          <code>
+            <div v-for="(value, propertyName) in log.targetObject.after" v-bind:key="propertyName">
+              <strong v-if="isDifferent(propertyName)">{{propertyName}}: {{ value }}</strong>
+              <span v-else>{{propertyName}}: {{ value }}</span>
+            </div>
+          </code>
+        </div>
+      </div>
     </div>
     <div v-else>
       <code>
