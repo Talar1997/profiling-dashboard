@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1 class="page-header-h">Dashboard</h1>
     </div>
-    <MemoryDonutChart v-bind:utilization-data="null" />
+    <MemoryDonutChart v-bind:utilization-data="utilizationModel.memory"/>
   </main-layout>
 </template>
 
@@ -12,7 +12,7 @@
 
 import MainLayout from "@/layouts/Main";
 import MemoryDonutChart from "@/components/Dashboard/Charts/MemoryDonutChart";
-import {fetchCurrentUtilizationData} from "@/api/utilizationApi";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'Dashboard',
@@ -22,21 +22,28 @@ export default {
   },
   data() {
     return {
-      utilizationModel: {}
+      utilizationModel: {
+        memory: {}
+      }
     }
   },
 
   methods: {
-    getData() {
-      fetchCurrentUtilizationData().then(result => {
-        console.log(result)
-        this.utilizationModel = result
-      })
-    }
+    ...mapActions('utilization', [
+      'getCurrentUtilization'
+    ]),
+  },
+  computed: {
+    ...mapGetters('utilization', [
+      'getMemoryData',
+    ])
   },
 
-  mounted() {
-    this.getData()
+  created() {
+    this.getCurrentUtilization().then(() => {
+      this.utilizationModel.memory = this.getMemoryData
+      console.log(this.utilizationModel)
+    })
   }
 
 }

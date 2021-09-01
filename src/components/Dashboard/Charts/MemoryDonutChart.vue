@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart type="doughnut" :data="utilizationData"/>
+    <Chart type="doughnut" v-bind:data="chartData" ref="doughnutMemoryChart"/>
   </div>
 </template>
 
@@ -18,6 +18,34 @@ export default {
       type: Object,
       default: () => {}
     },
+  },
+
+  data() {
+    return {
+      chartData: {
+        labels: ['Free memory','Memory in use'],
+        datasets: [
+          {
+            data: null,
+            backgroundColor: ["red","green"],
+            hoverBackgroundColor: ["red","green"],
+          }
+        ]
+      }
+    }
+  },
+
+  methods: {
+    assignUtilizationData(memoryData) {
+      this.chartData.datasets[0].data = [memoryData.freeMemMb, memoryData.usedMemMb]
+      this.$refs.doughnutMemoryChart.refresh()
+    }
+  },
+
+  watch: {
+    utilizationData: function(newVal) {
+      this.assignUtilizationData(newVal)
+    }
   },
 }
 </script>
