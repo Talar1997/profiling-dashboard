@@ -21,7 +21,7 @@ const actions = {
 
 const mutations = {
     setCurrentUtilizationData(state, utilization) {
-        state.currentUtilization = utilization
+        state.currentUtilization = {...utilization}
     },
 }
 

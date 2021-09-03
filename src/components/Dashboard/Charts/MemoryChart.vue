@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart type="doughnut" v-bind:data="chartData" ref="doughnutMemoryChart"/>
+    <Chart type="pie" v-bind:data="chartData" ref="doughnutMemoryChart"/>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import Chart from 'primevue/chart';
 
 export default {
-  name: "MemoryDonutChart",
+  name: "MemoryChart",
 
   components: {
     Chart,
