@@ -36,51 +36,50 @@
                 </div>
               </div>
               <div class="p-col-9">
-                <CpuChart v-bind:utilization-data="utilizationModel.memory"/>
+                <CpuChart v-bind:utilization-data="utilizationModel.cpu"/>
               </div>
             </div>
           </template>
         </Card>
       </div>
 
+
       <!--2-->
-<!--      <div class="p-col-6">-->
-<!--        <Card class="utilizationCard">-->
-<!--          <template #content>-->
-<!--            <h1>Memory</h1>-->
-<!--            <div class="p-grid">-->
-<!--              <div class="p-col-3">-->
-<!--                <div>-->
-<!--                  <p><strong>Free</strong>: {{ utilizationModel.memory.freeMemMb }}</p>-->
-<!--                  <p><strong>Used</strong>: {{ utilizationModel.memory.usedMemMb }}</p>-->
-<!--                  <p><strong>Total</strong>: {{ utilizationModel.memory.totalMemMb }}</p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="p-col-9">-->
-<!--                <MemoryChart v-bind:utilization-data="utilizationModel.memory"/>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </template>-->
-<!--        </Card>-->
+      <div class="p-col-6">
+        <Card class="utilizationCard">
+          <template #content>
+            <h1>Data details</h1>
+            <div class="p-grid">
+              <div class="p-col-6">
+                <div>
+                  <p><strong>Measure ID</strong>: {{ utilizationModel._id }}</p>
+                  <p><strong>Measured</strong>: {{ utilizationModel.isoDate }}</p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </Card>
 
+        <Card class="utilizationCard">
+          <template #content>
+            <h1>OS</h1>
+            <div class="p-grid">
+              <div class="p-col-3">
+                <div>
+                  <p><strong>Platform</strong>: {{ utilizationModel.os.platform }}</p>
+                  <p><strong>IP Address</strong>: {{ utilizationModel.os.ip }}</p>
+                </div>
+              </div>
+              <div class="p-col-9">
+                <div v-if="utilizationModel.os.platform === 'win32'" class="win10bg" style="height: 200px; width: 200px" />
+                <div v-else-if="utilizationModel.os.platform === 'debian'">
 
-<!--        <Card class="utilizationCard">-->
-<!--          <template #content>-->
-<!--            <h1>CPU</h1>-->
-<!--            <div class="p-grid">-->
-<!--              <div class="p-col-3">-->
-<!--                <div>-->
-<!--                  <p><strong>CPUs</strong>: {{ utilizationModel.cpu.cpus }}</p>-->
-<!--                  <p><strong>Usage</strong>: {{ utilizationModel.cpu.usage }}</p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="p-col-9">-->
-<!--                <CpuChart v-bind:utilization-data="utilizationModel.memory"/>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </template>-->
-<!--        </Card>-->
-<!--      </div>-->
+                </div>
+              </div>
+            </div>
+          </template>
+        </Card>
+      </div>
 
     </div>
   </main-layout>
@@ -122,16 +121,14 @@ export default {
     ...mapGetters('utilization', [
       'getMemoryData',
       'getCpuData',
-      'getUtilization'
+      'getUtilization',
+      'getOsData'
     ])
   },
 
   created() {
     this.getCurrentUtilization().then(() => {
-      console.log(this.getUtilization)
-      this.utilizationModel.memory = {...this.getMemoryData}
-      this.utilizationModel.cpu = {...this.getCpuData}
-      console.log(this.utilizationModel)
+      this.utilizationModel = {...this.getUtilization}
     })
   }
 
@@ -143,5 +140,7 @@ export default {
 
 .utilizationCard {
   margin: 5px !important;
+  min-height: 400px !important;
 }
+
 </style>

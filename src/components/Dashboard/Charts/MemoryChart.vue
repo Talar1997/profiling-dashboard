@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart type="pie" v-bind:data="chartData" ref="doughnutMemoryChart"/>
+    <Chart type="pie" v-bind:data="chartData" ref="memoryChart"/>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
   methods: {
     assignUtilizationData(memoryData) {
       this.chartData.datasets[0].data = [memoryData.freeMemMb, memoryData.usedMemMb]
-      this.$refs.doughnutMemoryChart.refresh()
+      this.$refs.memoryChart.refresh()
     }
   },
 

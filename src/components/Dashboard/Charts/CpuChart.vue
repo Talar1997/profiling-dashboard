@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart type="pie" v-bind:data="chartData" ref="doughnutMemoryChart"/>
+    <Chart type="bar" v-bind:data="chartData" v-bind:options="stackedOptions" ref="cpuChart"/>
   </div>
 </template>
 
@@ -23,22 +23,58 @@ export default {
   data() {
     return {
       chartData: {
-        labels: ['Free memory','Memory in use'],
-        datasets: [
-          {
-            data: null,
-            backgroundColor: ["red","green"],
-            hoverBackgroundColor: ["red","green"],
+        labels: ['CPU usage'],
+        datasets: [{
+          type: 'bar',
+          label: 'Used',
+          backgroundColor: '#42A5F5',
+          data: [0]
+        }, {
+          type: 'bar',
+          label: 'Free',
+          backgroundColor: '#66BB6A',
+          data: [0]
+        }]
+      },
+
+      stackedOptions: {
+        indexAxis: 'y',
+        plugins: {
+          tooltips: {
+            mode: 'index',
+            intersect: false
+          },
+          legend: {
+            labels: {
+              color: '#495057'
+            }
           }
-        ]
-      }
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            ticks: {
+              autoSkipPadding: 30,
+              autoSkip: true,
+            }
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              beginAtZero: true,
+            }
+          }],
+        }
+      },
     }
   },
 
   methods: {
-    assignUtilizationData(memoryData) {
-      this.chartData.datasets[0].data = [memoryData.freeMemMb, memoryData.usedMemMb]
-      this.$refs.doughnutMemoryChart.refresh()
+    assignUtilizationData(cpuData) {
+      this.chartData.datasets[0].data = [cpuData.usage]
+      this.chartData.datasets[1].data = [100 - cpuData.usage]
+
+      this.$refs.cpuChart.refresh()
     }
   },
 
