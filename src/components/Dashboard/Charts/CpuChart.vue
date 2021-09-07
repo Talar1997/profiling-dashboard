@@ -6,6 +6,7 @@
 
 <script>
 import Chart from 'primevue/chart';
+import {dateMixin} from "@/mixins/dateMixin";
 
 export default {
   name: "CpuChart",
@@ -20,20 +21,22 @@ export default {
     },
   },
 
+  mixins: [dateMixin],
+
   data() {
     return {
       chartData: {
-        labels: ['CPU usage'],
+        labels: [],
         datasets: [{
           type: 'bar',
           label: 'Used',
-          backgroundColor: '#42A5F5',
-          data: [0]
+          backgroundColor: '#1167b1',
+          data: []
         }, {
           type: 'bar',
           label: 'Free',
-          backgroundColor: '#66BB6A',
-          data: [0]
+          backgroundColor: '#b4d6f6',
+          data: []
         }]
       },
 
@@ -71,8 +74,16 @@ export default {
 
   methods: {
     assignUtilizationData(cpuData) {
-      this.chartData.datasets[0].data = [cpuData.usage]
-      this.chartData.datasets[1].data = [100 - cpuData.usage]
+      let chartData = cpuData
+      if(!Array.isArray(cpuData)) chartData = [cpuData]
+
+      chartData.forEach(data => {
+        this.chartData.labels.push(this.toClearDate(data.isoDate))
+        this.chartData.datasets[0].data.push(data.cpu.usage)
+        this.chartData.datasets[1].data.push(100 - data.cpu.usage)
+      })
+
+      console.log(this.chartData.datasets)
 
       this.$refs.cpuChart.refresh()
     }

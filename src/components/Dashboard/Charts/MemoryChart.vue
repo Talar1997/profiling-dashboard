@@ -27,8 +27,8 @@ export default {
         datasets: [
           {
             data: null,
-            backgroundColor: ["red","green"],
-            hoverBackgroundColor: ["red","green"],
+            backgroundColor: ["#b4d6f6","#1167b1"],
+            hoverBackgroundColor: ["#b4d6f6","#1167b1"],
           }
         ]
       }

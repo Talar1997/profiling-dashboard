@@ -1,6 +1,11 @@
 import moment from 'moment'
 
 export const dateMixin = {
+    data() {
+        return {
+            days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        }
+    },
     methods: {
         toClearDate(date) {
             if(!date) return "N/A"
@@ -14,10 +19,17 @@ export const dateMixin = {
             return newDate.format('HH:mm')
         },
 
+        toClearDatePrecise(date){
+            let newDate = new Date(date)
+            let newDateMoment = moment(newDate)
+            const day = this.days[newDate.getDay()]
+            newDateMoment.add(-1, 'h')
+            return `${this.toClearDate(newDate)} (${day}) ${newDateMoment.format('HH:mm:ss')}`;
+        },
+
         toClearDayName(date) {
             let newDate = new Date(date)
-            const days = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota']
-            return days[newDate.getDay()] + ", godzina: " + this.toClearHour(date)
+            return this.days[newDate.getDay()] + ", hour: " + this.toClearHour(date)
         },
 
         compareDates(date1, date2){

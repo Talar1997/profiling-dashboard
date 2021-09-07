@@ -18,7 +18,7 @@
                 </div>
               </div>
               <div class="p-col-9">
-                <MemoryChart v-bind:utilization-data="utilizationModel.memory"/>
+                <MemoryChart v-bind:utilization-data="utilizationModel.memory" class="max-height-400"/>
               </div>
             </div>
           </template>
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="p-col-9">
-                <CpuChart v-bind:utilization-data="utilizationModel.cpu"/>
+                <CpuChart v-bind:utilization-data="utilizationModel" class="max-height-400"/>
               </div>
             </div>
           </template>
@@ -53,7 +53,7 @@
               <div class="p-col-6">
                 <div>
                   <p><strong>Measure ID</strong>: {{ utilizationModel._id }}</p>
-                  <p><strong>Measured</strong>: {{ utilizationModel.isoDate }}</p>
+                  <p><strong>Measured</strong>: {{ toClearDatePrecise(utilizationModel.isoDate) }}</p>
                 </div>
               </div>
             </div>
@@ -93,6 +93,7 @@ import MemoryChart from "@/components/Dashboard/Charts/MemoryChart";
 import {mapActions, mapGetters} from "vuex";
 import Card from "primevue/components/card/Card";
 import CpuChart from "@/components/Dashboard/Charts/CpuChart";
+import {dateMixin} from "@/mixins/dateMixin";
 
 export default {
   name: 'Dashboard',
@@ -102,6 +103,8 @@ export default {
     MainLayout,
     Card
   },
+
+  mixins: [dateMixin],
   data() {
     return {
       utilizationModel: {
@@ -141,6 +144,11 @@ export default {
 .utilizationCard {
   margin: 5px !important;
   min-height: 400px !important;
+  max-height: 400px !important;
+}
+
+.max-height-400{
+  max-height: 400px !important;
 }
 
 </style>
