@@ -41,6 +41,7 @@ export default {
       },
 
       stackedOptions: {
+        responsive: true,
         indexAxis: 'y',
         plugins: {
           tooltips: {
@@ -80,6 +81,8 @@ export default {
     },
 
     assignUtilizationData(cpuData) {
+      console.log(cpuData)
+
       this.clearDataset()
       let chartData = cpuData
       if(!Array.isArray(cpuData)) chartData = [cpuData]

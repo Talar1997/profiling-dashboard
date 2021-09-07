@@ -81,3 +81,13 @@ h2 {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.utilizationCard {
+    margin: 5px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+}
+
+.max-height-400{
+    max-height: 400px !important;
+}

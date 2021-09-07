@@ -1,10 +1,12 @@
-import {fetchCurrentUtilizationData} from "@/api/utilizationApi";
+import {fetchCurrentUtilizationData, fetchLastDayUtilizationData} from "@/api/utilizationApi";
 
 const state = () => ({
     currentUtilization: {},
+    lastDayUtilization: []
 })
 
 const getters = {
+    lastDayUtilization: state => state.lastDayUtilization,
     getUtilization: state => state.currentUtilization,
     getCpuData: state => state.currentUtilization.cpu,
     getMemoryData: state => state.currentUtilization.memory,
@@ -17,12 +19,23 @@ const actions = {
             commit('setCurrentUtilizationData', result)
         })
     },
+
+    async getLastDayUtilization({commit}){
+        await fetchLastDayUtilizationData().then(result => {
+            console.log(result)
+            commit('setLastDayUtilizationData', result)
+        })
+    }
 }
 
 const mutations = {
     setCurrentUtilizationData(state, utilization) {
         state.currentUtilization = {...utilization}
     },
+
+    setLastDayUtilizationData(state, utilizationList){
+        state.lastDayUtilization = utilizationList
+    }
 }
 
 export default {

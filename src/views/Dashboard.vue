@@ -150,15 +150,4 @@ export default {
 
 <style scoped>
 @import '../assets/css/global.css';
-
-.utilizationCard {
-  margin: 5px !important;
-  min-height: 400px !important;
-  max-height: 400px !important;
-}
-
-.max-height-400{
-  max-height: 400px !important;
-}
-
 </style>
