@@ -111,7 +111,8 @@ export default {
         memory: {},
         cpu: {},
         os: {}
-      }
+      },
+      utilizationInterval: null
     }
   },
 
@@ -119,6 +120,12 @@ export default {
     ...mapActions('utilization', [
       'getCurrentUtilization'
     ]),
+
+    async getUtilizationData(){
+      this.getCurrentUtilization().then(() => {
+        this.utilizationModel = {...this.getUtilization}
+      })
+    }
   },
   computed: {
     ...mapGetters('utilization', [
@@ -130,9 +137,12 @@ export default {
   },
 
   created() {
-    this.getCurrentUtilization().then(() => {
-      this.utilizationModel = {...this.getUtilization}
-    })
+    this.getUtilizationData()
+  },
+
+  mounted() {
+    clearInterval(this.utilizationInterval)
+    this.utilizationInterval = setInterval(this.getUtilizationData, 5000)
   }
 
 }

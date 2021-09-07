@@ -73,7 +73,14 @@ export default {
   },
 
   methods: {
+    clearDataset(){
+      this.chartData.labels = []
+      this.chartData.datasets[0].data = []
+      this.chartData.datasets[1].data = []
+    },
+
     assignUtilizationData(cpuData) {
+      this.clearDataset()
       let chartData = cpuData
       if(!Array.isArray(cpuData)) chartData = [cpuData]
 
@@ -82,8 +89,6 @@ export default {
         this.chartData.datasets[0].data.push(data.cpu.usage)
         this.chartData.datasets[1].data.push(100 - data.cpu.usage)
       })
-
-      console.log(this.chartData.datasets)
 
       this.$refs.cpuChart.refresh()
     }
