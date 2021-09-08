@@ -19,6 +19,11 @@ export default {
       type: Object,
       default: () => {}
     },
+    hideLabels: {
+      type: Boolean,
+      default: false,
+      required: false,
+    }
   },
 
   mixins: [dateMixin],
@@ -41,7 +46,6 @@ export default {
       },
 
       stackedOptions: {
-        responsive: true,
         indexAxis: 'y',
         plugins: {
           tooltips: {
@@ -57,10 +61,6 @@ export default {
         scales: {
           xAxes: [{
             stacked: true,
-            ticks: {
-              autoSkipPadding: 30,
-              autoSkip: true,
-            }
           }],
           yAxes: [{
             stacked: true,
@@ -68,7 +68,7 @@ export default {
               beginAtZero: true,
             }
           }],
-        }
+        },
       },
     }
   },
@@ -81,14 +81,12 @@ export default {
     },
 
     assignUtilizationData(cpuData) {
-      console.log(cpuData)
-
       this.clearDataset()
       let chartData = cpuData
       if(!Array.isArray(cpuData)) chartData = [cpuData]
 
       chartData.forEach(data => {
-        this.chartData.labels.push(this.toClearDate(data.isoDate))
+        this.chartData.labels.push(this.toClearDate(data.isoDate) + " " + this.toClearHour(data.isoDate))
         this.chartData.datasets[0].data.push(data.cpu.usage)
         this.chartData.datasets[1].data.push(100 - data.cpu.usage)
       })
