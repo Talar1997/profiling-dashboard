@@ -3,48 +3,76 @@
     <div class="page-header">
       <h1 class="page-header-h">Dashboard</h1>
     </div>
+<!--    TODO: margin to fit-->
+    <h2>Memory</h2>
     <div class="p-grid">
       <!--   1   -->
+
+      <div class="p-col-6">
+        <div class="p-col-12">
+          <Card >
+            <template #content>
+              <p><strong>Free</strong>: {{ utilizationModel.memory.freeMemMb }}</p>
+            </template>
+          </Card>
+        </div>
+        <div class="p-col-12">
+          <Card>
+            <template #content>
+              <p><strong>Used</strong>: {{ utilizationModel.memory.usedMemMb }}</p>
+
+            </template>
+          </Card>
+        </div>
+        <div class="p-col-12">
+          <Card >
+            <template #content>
+              <p><strong>Total</strong>: {{ utilizationModel.memory.totalMemMb }}</p>
+            </template>
+          </Card>
+        </div>
+      </div>
+
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
-            <h1>Memory</h1>
-            <div class="p-grid">
-              <div class="p-col-3">
-                <div>
-                  <p><strong>Free</strong>: {{ utilizationModel.memory.freeMemMb }}</p>
-                  <p><strong>Used</strong>: {{ utilizationModel.memory.usedMemMb }}</p>
-                  <p><strong>Total</strong>: {{ utilizationModel.memory.totalMemMb }}</p>
-                </div>
-              </div>
-              <div class="p-col-9">
-                <MemoryChart v-bind:utilization-data="utilizationModel.memory" class="max-height-400"/>
-              </div>
-            </div>
-          </template>
-        </Card>
-
-
-        <Card class="utilizationCard">
-          <template #content>
-            <h1>CPU</h1>
-            <div class="p-grid">
-              <div class="p-col-3">
-                <div>
-                  <p><strong>CPUs</strong>: {{ utilizationModel.cpu.cpus }}</p>
-                  <p><strong>Usage</strong>: {{ utilizationModel.cpu.usage }}</p>
-                </div>
-              </div>
-              <div class="p-col-9">
-                <CpuChart v-bind:utilization-data="utilizationModel" class="max-height-400"/>
-              </div>
-            </div>
+            <MemoryChart v-bind:utilization-data="utilizationModel.memory" class="max-height-400"/>
           </template>
         </Card>
       </div>
+    </div>
 
+    <h2>CPU</h2>
+    <div class="p-grid">
+      <div class="p-col-6">
+        <div class="p-col-12">
+          <Card >
+            <template #content>
+              <p><strong>CPUs</strong>: {{ utilizationModel.cpu.cpus }}</p>
+
+            </template>
+          </Card>
+        </div>
+        <div class="p-col-12">
+          <Card>
+            <template #content>
+              <p><strong>Usage</strong>: {{ utilizationModel.cpu.usage }}</p>
+            </template>
+          </Card>
+        </div>
+      </div>
+
+      <div class="p-col-6">
+        <Card class="utilizationCard">
+          <template #content>
+            <CpuChart v-bind:utilization-data="utilizationModel" class="max-height-400"/>
+          </template>
+        </Card>
+      </div>
+    </div>
 
       <!--2-->
+    <div class="p-grid">
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
