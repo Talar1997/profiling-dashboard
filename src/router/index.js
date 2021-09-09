@@ -2,10 +2,8 @@ import {createRouter, createWebHistory} from "vue-router";
 
 import Dashboard from "@/views/Dashboard.vue";
 import Login from "@/views/Login.vue";
-import DataTest from "@/views/DataTest.vue";
 import NotFound from "@/views/NotFound";
 import Users from "@/views/Users";
-// import ProfilingApis from "@/views/Servers";
 import User from "@/views/User";
 import Logs from "@/views/Logs";
 import Statistics from "@/views/Statistics";
@@ -17,7 +15,10 @@ const routes = [
         component: Dashboard,
         meta: {
             title: 'Twoje przedmioty - Resource Manager',
-            requireAuth: true,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
     {
@@ -27,6 +28,10 @@ const routes = [
         meta: {
             title: '404 - Profiling Api',
             requireAuth: true,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
     {
@@ -36,6 +41,10 @@ const routes = [
         meta: {
             title: 'Dashboard - Profiling Api',
             requireAuth: true,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
     // {
@@ -54,6 +63,10 @@ const routes = [
         meta: {
             title: 'Users - Profiling Api',
             requireAuth: true,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
     {
@@ -63,6 +76,10 @@ const routes = [
         meta: {
             title: 'Przedmiot - GradesApp',
             requireAuth: true,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
     {
@@ -72,6 +89,10 @@ const routes = [
         meta: {
             title: 'Statistics - Profiling Api',
             requireAuth: true,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
     {
@@ -80,7 +101,10 @@ const routes = [
         component: Login,
         meta: {
             title: 'Login - Profiling Api',
-            requireAuth: false
+            requireAuth: false,
+            restrictions: {
+                restricted: false,
+            }
         }
     },
     {
@@ -89,17 +113,11 @@ const routes = [
         component: Logs,
         meta: {
             title: 'Logs - Profiling Api',
-            requireAuth: false
-        }
-    },
-    //FIXME: remove later alligator
-    {
-        path: "/test",
-        name: "Test",
-        component: DataTest,
-        meta: {
-            title: 'Test subpage',
-            requireAuth: false
+            requireAuth: false,
+            restrictions: {
+                restricted: true,
+                accessRole: ['admin']
+            }
         }
     },
 ];

@@ -143,8 +143,11 @@ export default {
   mounted() {
     clearInterval(this.utilizationInterval)
     this.utilizationInterval = setInterval(this.getUtilizationData, 5000)
-  }
+  },
 
+  beforeUnmount() {
+    clearInterval(this.utilizationInterval)
+  }
 }
 </script>
 

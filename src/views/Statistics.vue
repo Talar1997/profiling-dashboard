@@ -4,7 +4,7 @@
       <h1 class="page-header-h">Last 24 hours statistics and usage</h1>
     </div>
     <div class="p-grid">
-      <!--   1   -->
+
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
@@ -13,11 +13,11 @@
           </template>
         </Card>
       </div>
-      <!--      2-->
+
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
-            <h1>CPU</h1>
+            <h1>CPU Utilization</h1>
             <CpuChart v-bind:utilization-data="utilizationModel" v-bind:hideLabels="true" />
           </template>
         </Card>
@@ -27,7 +27,7 @@
         <Card class="utilizationCard">
           <template #content>
             <h1>Active users</h1>
-            <!--TODO: add-->
+            <UsersActiveIndicator v-bind:users-active="1" />
           </template>
         </Card>
       </div>
@@ -36,7 +36,7 @@
         <Card class="utilizationCard">
           <template #content>
             <h1>Actions performed</h1>
-            <!--TODO: add-->
+            <ActionsPerformedIndicator v-bind:actions="1" />
           </template>
         </Card>
       </div>
@@ -53,10 +53,14 @@ import Card from "primevue/components/card/Card";
 import {mapActions, mapGetters} from "vuex";
 import moment from 'moment'
 import MemoryLineChart from "@/components/Dashboard/Charts/MemoryLineChart";
+import UsersActiveIndicator from "@/components/Dashboard/Statistics/UsersActiveIndicator";
+import ActionsPerformedIndicator from "@/components/Dashboard/Statistics/ActionsPerformedIndicator";
 
 export default {
   name: 'Statistics',
   components: {
+    ActionsPerformedIndicator,
+    UsersActiveIndicator,
     MainLayout,
     CpuChart,
     Card,

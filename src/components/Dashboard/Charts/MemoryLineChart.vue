@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart type="line" v-bind:data="chartData" v-bind:options="stackedOptions" ref="cpuChart"/>
+    <Chart type="line" v-bind:data="chartData" v-bind:options="basicOptions" ref="memoryLineChart"/>
   </div>
 </template>
 
@@ -38,37 +38,6 @@ export default {
           }
         ]
       },
-
-      // stackedOptions: {
-      //   responsive: true,
-      //   indexAxis: 'y',
-      //   plugins: {
-      //     tooltips: {
-      //       mode: 'index',
-      //       intersect: false
-      //     },
-      //     legend: {
-      //       labels: {
-      //         color: '#495057'
-      //       }
-      //     }
-      //   },
-      //   scales: {
-      //     xAxes: [{
-      //       stacked: true,
-      //       ticks: {
-      //         autoSkipPadding: 30,
-      //         autoSkip: true,
-      //       }
-      //     }],
-      //     yAxes: [{
-      //       stacked: true,
-      //       ticks: {
-      //         beginAtZero: true,
-      //       }
-      //     }],
-      //   }
-      // },
 
       basicOptions: {
         plugins: {
@@ -116,7 +85,7 @@ export default {
         this.chartData.datasets[0].data.push(data.memory.usedMemMb)
       })
 
-      this.$refs.cpuChart.refresh()
+      this.$refs.memoryLineChart.refresh()
     }
   },
 
