@@ -7,7 +7,7 @@ const state = () => ({
 })
 
 const getters = {
-    getUsers: state => state.all,
+    getLogs: state => state.all,
     getLogsNumber: state => state.numberOfLogs,
 }
 
@@ -38,6 +38,7 @@ const mutations = {
 
     setLogs(state, logs) {
         state.all = logs
+        state.numberOfLogs = logs.length
     },
 
     setLogDetails(state, log) {

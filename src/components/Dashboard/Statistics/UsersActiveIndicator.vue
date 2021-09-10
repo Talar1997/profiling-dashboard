@@ -1,6 +1,7 @@
 <template>
   <div>
-    {{usersActive}}
+    <span class="indicator-header">Users active <span class="span-indicator">{{ usersActive }}</span></span>
+
   </div>
 </template>
 

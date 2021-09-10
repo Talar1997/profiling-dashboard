@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{actions}}
+    <span class="indicator-header">Actions performed <span class="span-indicator">{{ actions }}</span></span>
   </div>
 </template>
 
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import '../../../assets/css/global.css';
 </style>

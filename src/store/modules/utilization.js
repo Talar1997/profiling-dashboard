@@ -22,7 +22,6 @@ const actions = {
 
     async getLastDayUtilization({commit}){
         await fetchLastDayUtilizationData().then(result => {
-            console.log(result)
             commit('setLastDayUtilizationData', result)
         })
     }

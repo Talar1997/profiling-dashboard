@@ -76,27 +76,16 @@
     </div>
     <div class="p-grid">
       <div class="p-col-6">
-        <div class="p-col-12">
-          <Card >
-            <template #content>
-              <span class="indicator-header">Platform: <span class="span-indicator">{{ utilizationModel.os.platform }}</span></span>
-            </template>
-          </Card>
-        </div>
-        <div class="p-col-12">
-          <Card>
-            <template #content>
-              <span class="indicator-header">IP Address: <span class="span-indicator">{{ utilizationModel.os.ip }}</span></span>
-            </template>
-          </Card>
-        </div>
-      </div>
-
-      <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card >
           <template #content>
-            <div v-if="utilizationModel.os.platform === 'win32'" class="win10bg" style="height: 200px; width: 200px" />
-            <div v-else-if="utilizationModel.os.platform === 'debian'" />
+            <span class="indicator-header">Platform: <span class="span-indicator">{{ utilizationModel.os.platform }}</span></span>
+          </template>
+        </Card>
+      </div>
+      <div class="p-col-6">
+        <Card>
+          <template #content>
+            <span class="indicator-header">IP Address: <span class="span-indicator">{{ utilizationModel.os.ip }}</span></span>
           </template>
         </Card>
       </div>

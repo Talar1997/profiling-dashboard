@@ -26,8 +26,7 @@
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
-            <h1>Active users</h1>
-            <UsersActiveIndicator v-bind:users-active="1" />
+            <UsersActiveIndicator v-bind:users-active="usersActive" />
           </template>
         </Card>
       </div>
@@ -35,8 +34,7 @@
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
-            <h1>Actions performed</h1>
-            <ActionsPerformedIndicator v-bind:actions="1" />
+            <ActionsPerformedIndicator v-bind:actions="actionsPerformed" />
           </template>
         </Card>
       </div>
@@ -68,7 +66,9 @@ export default {
   },
   data() {
     return {
-      utilizationModel: []
+      utilizationModel: [],
+      actionsPerformed: 0,
+      usersActive: 0
     }
   },
 
@@ -77,10 +77,19 @@ export default {
       'getLastDayUtilization'
     ]),
 
-    async getUtilizationData() {
+    ...mapActions('logs', [
+      'getAllLogs'
+    ]),
+
+    async getStatisticsData() {
       this.getLastDayUtilization().then(() => {
-        //TODO filter for one result per hour
         this.utilizationModel = this.lastDayUtilization
+      })
+
+      this.getAllLogs().then(() => {
+        const logs = this.getLogs.filter(log => log.timestamp > moment().subtract(1, 'days').format())
+        this.actionsPerformed = logs.length
+        this.usersActive = new Set(logs.map(log => log.performedBy._id)).size
       })
     },
 
@@ -96,11 +105,15 @@ export default {
   computed: {
     ...mapGetters('utilization', [
       'lastDayUtilization',
+    ]),
+
+    ...mapGetters('logs', [
+      'getLogs',
     ])
   },
 
   created() {
-    this.getUtilizationData()
+    this.getStatisticsData()
   }
 
 }
