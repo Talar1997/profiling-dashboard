@@ -3,31 +3,29 @@
     <div class="page-header">
       <h1 class="page-header-h">Dashboard</h1>
     </div>
-<!--    TODO: margin to fit-->
-    <h2>Memory</h2>
+    <div class="page-header-h2">
+      <h2>Memory</h2>
+    </div>
     <div class="p-grid">
-      <!--   1   -->
-
       <div class="p-col-6">
         <div class="p-col-12">
           <Card >
             <template #content>
-              <p><strong>Free</strong>: {{ utilizationModel.memory.freeMemMb }}</p>
+              <span class="indicator-header">Free: <span class="span-indicator">{{ utilizationModel.memory.freeMemMb }} MB</span></span>
             </template>
           </Card>
         </div>
         <div class="p-col-12">
           <Card>
             <template #content>
-              <p><strong>Used</strong>: {{ utilizationModel.memory.usedMemMb }}</p>
-
+              <span class="indicator-header">Used: <span class="span-indicator">{{ utilizationModel.memory.usedMemMb }} MB</span></span>
             </template>
           </Card>
         </div>
         <div class="p-col-12">
           <Card >
             <template #content>
-              <p><strong>Total</strong>: {{ utilizationModel.memory.totalMemMb }}</p>
+              <span class="indicator-header">Total: <span class="span-indicator">{{ utilizationModel.memory.totalMemMb }} MB</span></span>
             </template>
           </Card>
         </div>
@@ -42,21 +40,22 @@
       </div>
     </div>
 
-    <h2>CPU</h2>
+    <div class="page-header">
+      <h2>CPU</h2>
+    </div>
     <div class="p-grid">
       <div class="p-col-6">
         <div class="p-col-12">
           <Card >
             <template #content>
-              <p><strong>CPUs</strong>: {{ utilizationModel.cpu.cpus }}</p>
-
+              <span class="indicator-header">CPUs: <span class="span-indicator">{{ utilizationModel.cpu.cpus }}</span></span>
             </template>
           </Card>
         </div>
         <div class="p-col-12">
           <Card>
             <template #content>
-              <p><strong>Usage</strong>: {{ utilizationModel.cpu.usage }}</p>
+              <span class="indicator-header">Usage: <span class="span-indicator">{{ utilizationModel.cpu.usage }}%</span></span>
             </template>
           </Card>
         </div>
@@ -72,43 +71,39 @@
     </div>
 
       <!--2-->
+    <div class="page-header-h2">
+      <h2>System</h2>
+    </div>
     <div class="p-grid">
+      <div class="p-col-6">
+        <div class="p-col-12">
+          <Card >
+            <template #content>
+              <span class="indicator-header">Platform: <span class="span-indicator">{{ utilizationModel.os.platform }}</span></span>
+            </template>
+          </Card>
+        </div>
+        <div class="p-col-12">
+          <Card>
+            <template #content>
+              <span class="indicator-header">IP Address: <span class="span-indicator">{{ utilizationModel.os.ip }}</span></span>
+            </template>
+          </Card>
+        </div>
+      </div>
+
       <div class="p-col-6">
         <Card class="utilizationCard">
           <template #content>
-            <h1>Data details</h1>
-            <div class="p-grid">
-              <div class="p-col-6">
-                <div>
-                  <p><strong>Measure ID</strong>: {{ utilizationModel._id }}</p>
-                  <p><strong>Measured</strong>: {{ toClearDatePrecise(utilizationModel.isoDate) }}</p>
-                </div>
-              </div>
-            </div>
-          </template>
-        </Card>
-
-        <Card class="utilizationCard">
-          <template #content>
-            <h1>OS</h1>
-            <div class="p-grid">
-              <div class="p-col-3">
-                <div>
-                  <p><strong>Platform</strong>: {{ utilizationModel.os.platform }}</p>
-                  <p><strong>IP Address</strong>: {{ utilizationModel.os.ip }}</p>
-                </div>
-              </div>
-              <div class="p-col-9">
-                <div v-if="utilizationModel.os.platform === 'win32'" class="win10bg" style="height: 200px; width: 200px" />
-                <div v-else-if="utilizationModel.os.platform === 'debian'">
-
-                </div>
-              </div>
-            </div>
+            <div v-if="utilizationModel.os.platform === 'win32'" class="win10bg" style="height: 200px; width: 200px" />
+            <div v-else-if="utilizationModel.os.platform === 'debian'" />
           </template>
         </Card>
       </div>
+    </div>
 
+    <div class="page-header-h2" style="text-align: center; padding: 25px">
+      <i>Measured: {{ toClearDatePrecise(utilizationModel.isoDate) }} ({{utilizationModel._id}})</i>
     </div>
   </main-layout>
 </template>

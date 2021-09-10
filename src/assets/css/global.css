@@ -25,6 +25,10 @@ h2 {
     height: 100%;
 }
 
+.page-header-h2 {
+    padding: 0 15px;
+}
+
 .page-header {
     padding: 15px;
 }
@@ -89,3 +93,12 @@ h2 {
 .max-height-400{
     max-height: 400px !important;
 }
+
+.span-indicator{
+    display: inline-block;
+    float: right;
+}
+
+.indicator-header{
+    font-size: 1.8em;
+ }
