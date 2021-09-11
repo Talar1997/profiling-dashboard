@@ -3,12 +3,14 @@
     <div class="page-header">
       <h1 class="page-header-h">User details</h1>
     </div>
+    <div class="p-grid">
+      <div class="p-col-4">
+        <UserDetailsCard v-bind:user-details="userDetails"/>
+      </div>
 
-    <div>
-      {{userDetails}}
-      <!--      TODO: user details box-->
-      <!--      TODO: users log table-->
-      <!--      TODO: activity statistics? Chart with action per day-->
+      <div class="p-col-8">
+        <UserTabView/>
+      </div>
     </div>
   </main-layout>
 </template>
@@ -16,11 +18,15 @@
 <script>
 import {mapActions, mapState} from "vuex";
 import MainLayout from "@/layouts/Main";
+import UserDetailsCard from "@/components/User/UserDetailsCard";
+import UserTabView from "@/components/User/UserTabView";
 
 export default {
   name: "User",
 
   components: {
+    UserTabView,
+    UserDetailsCard,
     MainLayout,
   },
 
@@ -45,7 +51,6 @@ export default {
 
   created() {
     this.getUserDetails(this.userId).then(() => {
-      console.log("aaa", this.user)
       this.userDetails = this.user
     })
   },
