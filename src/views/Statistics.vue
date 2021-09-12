@@ -4,9 +4,8 @@
       <h1 class="page-header-h">Last day statistics and usage</h1>
     </div>
     <div class="p-grid">
-
       <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card class="utilizationCard page-content">
           <template #content>
             <h1>Memory</h1>
             <MemoryLineChart v-if="!loadingUtilizationModel" v-bind:utilization-data="utilizationModel"/>
@@ -16,18 +15,17 @@
       </div>
 
       <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card class="utilizationCard page-content">
           <template #content>
             <h1>CPU Utilization</h1>
             <CpuChart v-if="!loadingUtilizationModel" v-bind:utilization-data="utilizationModel" v-bind:hideLabels="true" />
             <Skeleton v-else width="100%" height="20rem" />
-
           </template>
         </Card>
       </div>
 
       <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card class="utilizationCard page-content">
           <template #content>
             <UsersActiveIndicator v-if="!loadingLogs" v-bind:users-active="usersActive" />
             <Skeleton v-else width="100%" height="2rem" />
@@ -36,7 +34,7 @@
       </div>
 
       <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card class="utilizationCard page-content">
           <template #content>
             <ActionsPerformedIndicator v-if="!loadingLogs" v-bind:actions="actionsPerformed" />
             <Skeleton v-else width="100%" height="2rem" />

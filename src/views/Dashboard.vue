@@ -9,21 +9,21 @@
     <div class="p-grid">
       <div class="p-col-6">
         <div class="p-col-12">
-          <Card >
+          <Card  class="page-content">
             <template #content>
               <span class="indicator-header">Free: <span class="span-indicator">{{ utilizationModel.memory.freeMemMb }} MB</span></span>
             </template>
           </Card>
         </div>
         <div class="p-col-12">
-          <Card>
+          <Card class="page-content">
             <template #content>
               <span class="indicator-header">Used: <span class="span-indicator">{{ utilizationModel.memory.usedMemMb }} MB</span></span>
             </template>
           </Card>
         </div>
         <div class="p-col-12">
-          <Card >
+          <Card  class="page-content">
             <template #content>
               <span class="indicator-header">Total: <span class="span-indicator">{{ utilizationModel.memory.totalMemMb }} MB</span></span>
             </template>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card class="utilizationCard page-content">
           <template #content>
             <MemoryChart v-bind:utilization-data="utilizationModel.memory" class="max-height-400"/>
           </template>
@@ -46,14 +46,14 @@
     <div class="p-grid">
       <div class="p-col-6">
         <div class="p-col-12">
-          <Card >
+          <Card class="page-content">
             <template #content>
               <span class="indicator-header">CPUs: <span class="span-indicator">{{ utilizationModel.cpu.cpus }}</span></span>
             </template>
           </Card>
         </div>
         <div class="p-col-12">
-          <Card>
+          <Card class="page-content">
             <template #content>
               <span class="indicator-header">Usage: <span class="span-indicator">{{ utilizationModel.cpu.usage }}%</span></span>
             </template>
@@ -62,7 +62,7 @@
       </div>
 
       <div class="p-col-6">
-        <Card class="utilizationCard">
+        <Card class="utilizationCard page-content">
           <template #content>
             <CpuChart v-bind:utilization-data="utilizationModel" class="max-height-400"/>
           </template>
@@ -76,14 +76,14 @@
     </div>
     <div class="p-grid">
       <div class="p-col-6">
-        <Card >
+        <Card class="page-content">
           <template #content>
             <span class="indicator-header">Platform: <span class="span-indicator">{{ utilizationModel.os.platform }}</span></span>
           </template>
         </Card>
       </div>
       <div class="p-col-6">
-        <Card>
+        <Card class="page-content">
           <template #content>
             <span class="indicator-header">IP Address: <span class="span-indicator">{{ utilizationModel.os.ip }}</span></span>
           </template>

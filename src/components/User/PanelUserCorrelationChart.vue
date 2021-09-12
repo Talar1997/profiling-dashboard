@@ -1,12 +1,12 @@
 <template>
-  <!--  TODO: correlation chart with other users. Use radar from primevue-->
-
-  <div>Content...</div>
+  <CorrelationRadarChart />
 </template>
 
 <script>
+import CorrelationRadarChart from "@/components/User/CorrelationRadarChart";
 export default {
-  name: "PanelUserCorrelationChart"
+  name: "PanelUserCorrelationChart",
+  components: {CorrelationRadarChart}
 }
 </script>
 

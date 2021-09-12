@@ -1,5 +1,5 @@
 <template>
-  <div class="p-card custom-card">
+  <div class="p-card custom-card page-content">
      <div class="p-grid">
        <div class="p-col-12">
          <h3>Username</h3><span>{{userDetails.name}}</span>

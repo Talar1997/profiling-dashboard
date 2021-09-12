@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <span class="indicator-header">Users active <span class="span-indicator">{{ usersActive }}</span></span>
+  <div class="page-content">
+    <span class="indicator-header ">Users active <span class="span-indicator">{{ usersActive }}</span></span>
 
   </div>
 </template>

@@ -4,53 +4,58 @@
       <h1 class="page-header-h">All logs</h1>
     </div>
 
-    <DataTable v-bind:value="logList"
-               v-bind:lazy="true"
-               v-bind:paginator="true"
-               v-bind:rows="pagination.limit"
-               v-bind:totalRecords="totalRecords"
-               v-bind:loading="loading"
-               v-bind:rowsPerPageOptions="[10,20,30]"
-               v-on:page="onPage($event)"
-               v-on:sort="onSort($event)"
-               v-on:filter="onFilter($event)"
-               v-model:filters="filters"
-               ref="dt"
-               filterDisplay="row"
-               responsiveLayout="scroll">
+    <Card class="page-content">
+      <template #content>
+        <DataTable v-bind:value="logList"
+                   v-bind:lazy="true"
+                   v-bind:paginator="true"
+                   v-bind:rows="pagination.limit"
+                   v-bind:totalRecords="totalRecords"
+                   v-bind:loading="loading"
+                   v-bind:rowsPerPageOptions="[10,20,30]"
+                   v-on:page="onPage($event)"
+                   v-on:sort="onSort($event)"
+                   v-on:filter="onFilter($event)"
+                   ref="dt"
+                   filterDisplay="row"
+                   responsiveLayout="scroll">
 
-      <Column field="level" header="SEVERITY" ref="level" v-bind:sortable="true" headerStyle="width: 120px">
-        <template #body="slotProps">
-          <Badge v-bind:value="slotProps.data.level" v-bind:severity="computeVariant(slotProps.data.level)"></Badge>
-        </template>
-      </Column>
+          <Column field="level" header="SEVERITY" ref="level" v-bind:sortable="true" headerStyle="width: 120px">
+            <template #body="slotProps">
+              <Badge v-bind:value="slotProps.data.level" v-bind:severity="computeVariant(slotProps.data.level)"></Badge>
+            </template>
+          </Column>
 
-      <Column field="action.method" header="ACTION" ref="action.method" v-bind:sortable="true" headerStyle="width: 120px">
-        <template #body="slotProps">
-          <Badge v-bind:value="slotProps.data.action.method" v-bind:severity="computeMethodVariant(slotProps.data.action.method)"></Badge>
-        </template>
-      </Column>
-      <Column field="targetObject.name" header="TARGET" ref="targetObject.name" v-bind:sortable="true">
-        <template #body="slotProps">
-          <span> {{computeResourceType(slotProps.data.action.url)}}</span>
-        </template>
-      </Column>
-      <Column field="performedBy.email" header="PERFORMED BY" ref="performedBy.email" v-bind:sortable="true" />
+          <Column field="action.method" header="ACTION" ref="action.method" v-bind:sortable="true" headerStyle="width: 120px">
+            <template #body="slotProps">
+              <Badge v-bind:value="slotProps.data.action.method" v-bind:severity="computeMethodVariant(slotProps.data.action.method)"></Badge>
+            </template>
+          </Column>
+          <Column field="targetObject.name" header="TARGET" ref="targetObject.name" v-bind:sortable="true">
+            <template #body="slotProps">
+              <span> {{computeResourceType(slotProps.data.action.url)}}</span>
+            </template>
+          </Column>
+          <Column field="performedBy.email" header="PERFORMED BY" ref="performedBy.email" v-bind:sortable="true" />
 
-      <Column field="issuedAtISO" header="ISSUED AT" ref="issuedAtISO" v-bind:sortable="true">
-        <template #body="slotProps">
-          <span> {{simplifyDate(slotProps.data.issuedAtISO)}}</span>
-        </template>
-      </Column>
-      <Column v-bind:exportable="false" ref="actions" headerStyle="width: 150px">
-        <template #body="slotProps">
-          <Button icon="pi pi-info" class="p-button-outlined p-button-rounded p-button-info p-mr-2"
-                  v-on:click="openLogDetailsModal(slotProps.data)" />
-        </template>
-      </Column>
-    </DataTable>
+          <Column field="issuedAtISO" header="ISSUED AT" ref="issuedAtISO" v-bind:sortable="true">
+            <template #body="slotProps">
+              <span> {{simplifyDate(slotProps.data.issuedAtISO)}}</span>
+            </template>
+          </Column>
+          <Column v-bind:exportable="false" ref="actions" headerStyle="width: 150px">
+            <template #body="slotProps">
+              <Button icon="pi pi-info" class="p-button-outlined p-button-rounded p-button-info p-mr-2"
+                      v-on:click="openLogDetailsModal(slotProps.data)" />
+            </template>
+          </Column>
+        </DataTable>
 
+      </template>
+
+    </Card>
     <LogsDetailsModal />
+
   </main-layout>
 </template>
 
@@ -63,6 +68,7 @@ import {logsMixin} from "@/mixins/logsMixin";
 import Button from "primevue/components/button/Button";
 import {mapActions, mapState} from "vuex";
 import LogsDetailsModal from "@/components/Logs/LogsDetailsModal";
+import Card from "primevue/components/card/Card";
 
 export default {
   name: "Logs",
@@ -72,7 +78,8 @@ export default {
     DataTable,
     Column,
     Badge,
-    Button
+    Button,
+    Card
   },
 
   mixins: [logsMixin],
@@ -146,11 +153,13 @@ export default {
     },
 
     onSort() {
-      this.loadLazyData();
+      // this.loadLazyData();
+      throw new Error("Not implemented yet")
     },
 
     onFilter() {
-      this.loadLazyData();
+      // this.loadLazyData();
+      throw new Error("Not implemented yet")
     },
   },
 }
