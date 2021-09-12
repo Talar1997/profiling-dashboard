@@ -5,21 +5,21 @@
         <TabPanel>
           <template #header>
             <i class="pi pi-calendar"></i>
-            <span>Header I</span>
+            <span>User logs</span>
           </template>
-          <PanelUserLogsTable/>
+          <PanelUserLogsTable v-bind:user-id="userId"/>
         </TabPanel>
         <TabPanel>
           <template #header>
             <i class="pi pi-calendar"></i>
-            <span>Header I</span>
+            <span>Activity chart</span>
           </template>
-          <PanelUserActivityStatistics/>
+          <PanelUserActivityStatistics v-bind:user-id="userId"/>
         </TabPanel>
         <TabPanel>
           <template #header>
             <i class="pi pi-calendar"></i>
-            <span>Header II</span>
+            <span>Correlation chart</span>
           </template>
           <PanelUserCorrelationChart />
         </TabPanel>
@@ -46,12 +46,10 @@ export default {
     TabView,
     Card
   },
-
-  props: {
-    userId: {
-      type: String,
-      default: ""
-    },
+  data() {
+    return {
+      userId: this.$route.params.id,
+    }
   },
 }
 </script>

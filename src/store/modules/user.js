@@ -1,7 +1,11 @@
 import {userService} from '@/utils/user-service';
 
 const state = () => ({
-    user: {}
+    user: {},
+    //TODO: replace logic from users panels to user.js store
+    logs: [],
+    numberOfLogs: 0,
+    log: {},
 })
 
 const getters = {

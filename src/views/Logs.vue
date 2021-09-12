@@ -82,12 +82,6 @@ export default {
       loading: false,
       totalRecords: 0,
       logList: null,
-      filters: {
-        'name': {value: '', matchMode: 'contains'},
-        'country.name': {value: '', matchMode: 'contains'},
-        'company': {value: '', matchMode: 'contains'},
-        'representative.name': {value: '', matchMode: 'contains'},
-      },
       columns: [
         {field: 'level', header: 'Severity'},
         {field: 'action.method', header: 'Action'},

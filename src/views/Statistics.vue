@@ -1,7 +1,7 @@
 <template>
   <main-layout>
     <div class="page-header">
-      <h1 class="page-header-h">Last 24 hours statistics and usage</h1>
+      <h1 class="page-header-h">Last day statistics and usage</h1>
     </div>
     <div class="p-grid">
 
@@ -96,7 +96,12 @@ export default {
             this.loadingUtilizationModel = false
           })
           .then(() => {
-            this.utilizationModel = this.lastDayUtilization
+            if(this.lastDayUtilization.length > 50){
+              this.utilizationModel = this.lastDayUtilization.filter((el, idx) => {
+                if(idx % 5 === 0) return el;
+              })
+            }
+            else this.utilizationModel = this.lastDayUtilization
           })
           .then(() => {
             this.getAllLogs().then(() => {

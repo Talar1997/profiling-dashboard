@@ -12,8 +12,8 @@ const getters = {
 }
 
 const actions = {
-    async getNumberOfLogs({commit}){
-        await fetchNumberOfLogs().then(result => {
+    async getNumberOfLogs({commit}, query){
+        await fetchNumberOfLogs(query).then(result => {
             commit('setNumberOfAllLogs', result)
         })
     },

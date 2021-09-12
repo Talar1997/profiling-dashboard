@@ -7,8 +7,6 @@ export function routerMiddleware(to, from, next) {
     const path = to.meta.restrictions
     const tryingToLogin = tryingToReachLogin(to.path)
 
-    console.log(tryingToLogin, to, userRole, isLoggedIn)
-
     if(!tryingToLogin){
         if(!isLoggedIn) forwardToLoginPage(next)
         if(isTokenExpired()) invalidate(next)

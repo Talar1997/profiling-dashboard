@@ -1,7 +1,7 @@
 <template>
   <main-layout>
     <div class="page-header">
-      <h1 class="page-header-h">User details</h1>
+      <h1 class="page-header-h">Details: {{userDetails.name}}</h1>
     </div>
     <div class="p-grid">
       <div class="p-col-4">
